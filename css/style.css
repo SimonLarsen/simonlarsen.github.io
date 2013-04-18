@@ -1,0 +1,86 @@
+body {
+	background-color: #1c1c1c;
+	background-image: url("/images/bg.png");
+	background-position: center;
+	background-repeat: repeat-y;
+	font-family: "Noto Sans", Arial, sans-serif;
+}
+
+a, a:visited {
+	color: #8787af;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #57d7ff;
+	text-decoration: none;
+}
+
+#container {
+	color: #dadada;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+hr {
+	background: #808080;
+	border: 0px;
+	height: 1px;
+	width: 700px;
+}
+
+#top-menu ul {
+	list-style-type: none;
+}
+#top-menu li {
+	float: right;
+	margin-left: 20px;
+}
+
+#header {
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 10px;
+}
+
+#header h1 {
+	text-shadow: 0px 1px #080808;
+}
+
+#header h3 {
+	color: #afd700;
+	font-style: italic;
+	text-shadow: 0px 1px #080808;
+}
+
+#content {
+	padding-left: 50px;
+	padding-right: 50px;
+	text-align: justify;
+}
+
+#content h2, #content h2 a, #content h2 a:hover, #content h2 a:visited {
+	color: #ff8700;
+}
+
+#content h3 {
+	color: #ffffff;
+}
+
+.post-timestamp {
+	color: #808080;
+	font-weight: bold;
+}
+
+.gallery {
+	text-align: center;
+}
+
+.game-thumb {
+	border: 1px solid #8787af;
+}
+
+.game-thumb:hover {
+	border: 1px solid #57d7ff;
+}
