@@ -54,6 +54,10 @@ hr {
 	text-shadow: 0px 1px #080808;
 }
 
+#footer {
+	text-align: center;
+}
+
 #content {
 	padding-left: 50px;
 	padding-right: 50px;
