@@ -14,4 +14,5 @@ The actual portals are drawn using the stencil buffer in a pretty straight-forwa
 </center>
 
 ### Source code ###
-Github repo: [https://github.com/SimonLarsen/glPortal](https://github.com/SimonLarsen/glPortal) (ZLIB licenced)
+
+* Github repo: [https://github.com/SimonLarsen/glPortal](https://github.com/SimonLarsen/glPortal) \[ZLIB licenced\]

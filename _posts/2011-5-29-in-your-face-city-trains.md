@@ -24,9 +24,9 @@ Jump over trains with closed doors and try (as much as possible) to run through 
 
 ### Downloads ###
 
-* [Windows binary](https://github.com/downloads/SimonLarsen/iyfct/iyfct-win32.zip) (Windows 32 bit)
-* [LÖVE package](https://github.com/downloads/SimonLarsen/iyfct/iyfct.love) (Win/Linux/OS X) (Requires [LÖVE](http://love2d.org/))
-* [Source code](https://github.com/SimonLarsen/iyfct) (Github) (GPLv3)
+* [Windows binary](https://github.com/downloads/SimonLarsen/iyfct/iyfct-win32.zip) \[Windows 32 bit\]
+* [LÖVE package](https://github.com/downloads/SimonLarsen/iyfct/iyfct.love) \[Win/Linux/OS X\] (Requires [LÖVE](http://love2d.org/))
+* [Source code](https://github.com/SimonLarsen/iyfct) \[Github\] (GPLv3)
 
 ### Licence / credits ###
 
