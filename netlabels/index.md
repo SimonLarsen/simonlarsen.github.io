@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Big List O' Net Labels
+title: Big List O' Awesome Netlabels
 ---
-Updated Mon, 06 May 2013 23:41:44 +0200
+Updated Tue, 07 May 2013 23:27:54 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -13,6 +13,7 @@ Updated Mon, 06 May 2013 23:41:44 +0200
 * [Alkalinear Recordings](http://alkalinearrecordings.tumblr.com/releases)
 * [Element Perspective](http://elementperspective04.bandcamp.com)
 * [Bunkai-Kei records](http://bunkai-kei.com/release/)
+* [MiMi](http://www.clubotaku.org/mimi/uk/main.php)
 
 ## Experimental hip hop ##
 
