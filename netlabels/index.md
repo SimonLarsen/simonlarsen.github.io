@@ -12,6 +12,7 @@ Updated Mon, 06 May 2013 23:41:44 +0200
 * [Detroit Underground](http://detroitunderground.net/)
 * [Alkalinear Recordings](http://alkalinearrecordings.tumblr.com/releases)
 * [Element Perspective](http://elementperspective04.bandcamp.com)
+* [Bunkai-Kei records](http://bunkai-kei.com/release/)
 
 ## Experimental hip hop ##
 
@@ -26,7 +27,6 @@ Updated Mon, 06 May 2013 23:41:44 +0200
 * [Ubiktune](http://ubiktune.com/releases)
 * [Marshare's Emporium](http://marsharem.bandcamp.com/)
 * [9-bit records](http://9bitrecords.com/)
-* [Bunkai-Kei records](http://bunkai-kei.com/release/)
 * [NoiChan](http://www.noisechannel.org/)
 
 ## Drum 'n' bass ##
