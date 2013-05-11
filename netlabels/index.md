@@ -19,6 +19,7 @@ Updated Tue, 07 May 2013 23:27:54 +0200
 
 * [Harmful Logic](http://harmfullogic666.bandcamp.com)
 * [DaP Station](http://dapstation.bandcamp.com/)
+* [Beats Home](http://beatshome.bandcamp.com/)
 
 ## Chiptune ##
 
