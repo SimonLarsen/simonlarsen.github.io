@@ -17,7 +17,7 @@ Updated Sat, 11 May 2013 17:51:08 +0200
 
 ## Experimental hip hop ##
 
-* [Harmful Logic](http://harmfullogic666.bandcamp.com)
+* [PIR▲.MD](http://piramdrecords.net/eps)
 * [DaP Station](http://dapstation.bandcamp.com/)
 * [Beats Home](http://beatshome.bandcamp.com/)
 
