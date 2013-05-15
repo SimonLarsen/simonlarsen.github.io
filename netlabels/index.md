@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Sat, 11 May 2013 17:51:08 +0200
+Updated Wed, 15 May 2013 10:22:37 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -14,6 +14,7 @@ Updated Sat, 11 May 2013 17:51:08 +0200
 * [Element Perspective](http://elementperspective04.bandcamp.com)
 * [Bunkai-Kei records](http://bunkai-kei.com/release/)
 * [MiMi](http://www.clubotaku.org/mimi/uk/main.php)
+* [Clean Error Records](http://cleanerrorrecords.bandcamp.com/)
 
 ## Experimental hip hop ##
 
