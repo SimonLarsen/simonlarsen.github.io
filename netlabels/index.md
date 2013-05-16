@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Wed, 15 May 2013 10:22:37 +0200
+Updated Thu, 16 May 2013 10:11:18 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -15,6 +15,7 @@ Updated Wed, 15 May 2013 10:22:37 +0200
 * [Bunkai-Kei records](http://bunkai-kei.com/release/)
 * [MiMi](http://www.clubotaku.org/mimi/uk/main.php)
 * [Clean Error Records](http://cleanerrorrecords.bandcamp.com/)
+* [ALTEMA Records](http://www.altemarecords.jp/)
 
 ## Experimental hip hop ##
 
