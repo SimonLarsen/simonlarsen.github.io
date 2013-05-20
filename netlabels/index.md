@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Thu, 16 May 2013 10:11:18 +0200
+Updated Mon, 20 May 2013 15:31:29 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -16,6 +16,7 @@ Updated Thu, 16 May 2013 10:11:18 +0200
 * [MiMi](http://www.clubotaku.org/mimi/uk/main.php)
 * [Clean Error Records](http://cleanerrorrecords.bandcamp.com/)
 * [ALTEMA Records](http://www.altemarecords.jp/)
+* [curious absurdities](http://curious-absurdities.bandcamp.com/)
 
 ## Experimental hip hop ##
 
