@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Mon, 20 May 2013 15:31:29 +0200
+Updated Sat, 25 May 2013 14:48:24 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -23,6 +23,7 @@ Updated Mon, 20 May 2013 15:31:29 +0200
 * [PIR▲.MD](http://piramdrecords.net/eps)
 * [DaP Station](http://dapstation.bandcamp.com/)
 * [Beats Home](http://beatshome.bandcamp.com/)
+* [yelowe records](https://soundcloud.com/yelowe)
 
 ## Chiptune ##
 
