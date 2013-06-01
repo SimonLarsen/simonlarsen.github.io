@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Sat, 25 May 2013 14:48:24 +0200
+Updated Sat, 01 Jun 2013 15:18:40 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -24,6 +24,7 @@ Updated Sat, 25 May 2013 14:48:24 +0200
 * [DaP Station](http://dapstation.bandcamp.com/)
 * [Beats Home](http://beatshome.bandcamp.com/)
 * [yelowe records](https://soundcloud.com/yelowe)
+* [Collective Resonance](http://collectiveresonance.bandcamp.com/)
 
 ## Chiptune ##
 
