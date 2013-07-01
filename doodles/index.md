@@ -2,6 +2,9 @@
 layout: default
 title: Doodles
 images:
+ - images/umbrellas.png
+ - images/aa.png
+ - images/nom.png
  - images/regnar.png
  - images/tentaclebox.png
  - images/revirt.png
