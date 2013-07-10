@@ -26,6 +26,7 @@ Updated Thu, 06 Jun 2013 01:38:25 +0200
 * [yelowe records](https://soundcloud.com/yelowe)
 * [Collective Resonance](http://collectiveresonance.bandcamp.com/)
 * [Paxico Records](http://paxicorecords.bandcamp.com/)
+* [Potholes Music](http://potholesinmyblog.com/potholes-music/)
 
 ## Chiptune ##
 
