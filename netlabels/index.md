@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Thu, 06 Jun 2013 01:38:25 +0200
+Updated Thu, 18 Jul 2013 12:10:18 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -27,6 +27,7 @@ Updated Thu, 06 Jun 2013 01:38:25 +0200
 * [Collective Resonance](http://collectiveresonance.bandcamp.com/)
 * [Paxico Records](http://paxicorecords.bandcamp.com/)
 * [Potholes Music](http://potholesinmyblog.com/potholes-music/)
+* [Fly By Night Collective](http://flybynightcollective.bandcamp.com/)
 
 ## Chiptune ##
 
