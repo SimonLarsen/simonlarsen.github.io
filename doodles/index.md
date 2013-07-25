@@ -2,6 +2,7 @@
 layout: default
 title: Doodles
 images:
+ - images/view.png
  - images/umbrellas.png
  - images/aa.png
  - images/nom.png
