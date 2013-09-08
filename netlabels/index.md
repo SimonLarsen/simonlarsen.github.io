@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Sun, 04 Aug 2013 01:10:53 +0200
+Updated Sun, 08 Sep 2013 20:48:14 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -29,6 +29,7 @@ Updated Sun, 04 Aug 2013 01:10:53 +0200
 * [Potholes Music](http://potholesinmyblog.com/potholes-music/)
 * [Fly By Night Collective](http://flybynightcollective.bandcamp.com/)
 * [Paxico Records](http://paxicorecords.com/)
+* [Word Is Bond](http://wordisbond.bandcamp.com/)
 
 ## Chiptune ##
 
