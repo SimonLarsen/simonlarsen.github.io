@@ -2,7 +2,8 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Sun, 08 Sep 2013 20:48:14 +0200
+Updated Mon, 09 Sep 2013 11:38:11 +0200
+
 
 ## IDM / Electronic / Experimental ##
 
@@ -18,7 +19,7 @@ Updated Sun, 08 Sep 2013 20:48:14 +0200
 * [ALTEMA Records](http://www.altemarecords.jp/)
 * [curious absurdities](http://curious-absurdities.bandcamp.com/)
 
-## Experimental hip hop ##
+##Hip hop (mostly experimental and instrumental) ##
 
 * [PIR▲.MD](http://piramdrecords.net/eps)
 * [DaP Station](http://dapstation.bandcamp.com/)
@@ -30,6 +31,7 @@ Updated Sun, 08 Sep 2013 20:48:14 +0200
 * [Fly By Night Collective](http://flybynightcollective.bandcamp.com/)
 * [Paxico Records](http://paxicorecords.com/)
 * [Word Is Bond](http://wordisbond.bandcamp.com/)
+* [HUH WHAT & WHERE](http://huhwhatandwhere.com/about/)
 
 ## Chiptune ##
 
