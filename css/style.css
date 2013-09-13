@@ -30,6 +30,10 @@ hr {
 	width: 800px;
 }
 
+small {
+	color: #aaaaaa;
+}
+
 #top-menu ul {
 	list-style-type: none;
 }
