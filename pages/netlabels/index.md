@@ -2,8 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Mon, 09 Sep 2013 11:38:11 +0200
-
+Updated Tue, 24 Sep 2013 20:54:50 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -32,6 +31,7 @@ Updated Mon, 09 Sep 2013 11:38:11 +0200
 * [Paxico Records](http://paxicorecords.com/)
 * [Word Is Bond](http://wordisbond.bandcamp.com/)
 * [HUH WHAT & WHERE](http://huhwhatandwhere.com/about/)
+* [Cascade Records](http://cascaderecords.bandcamp.com/)
 
 ## Chiptune ##
 
