@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Tue, 24 Sep 2013 20:54:50 +0200
+Updated Thu, 26 Sep 2013 11:18:17 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -32,6 +32,8 @@ Updated Tue, 24 Sep 2013 20:54:50 +0200
 * [Word Is Bond](http://wordisbond.bandcamp.com/)
 * [HUH WHAT & WHERE](http://huhwhatandwhere.com/about/)
 * [Cascade Records](http://cascaderecords.bandcamp.com/)
+* [Amajin Records](https://amajinrecords.bandcamp.com/)
+* [Wizards Only](https://wizardsonly.bandcamp.com/)
 
 ## Chiptune ##
 
