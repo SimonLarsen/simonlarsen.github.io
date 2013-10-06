@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Project
+title: Projects
 ---
 Below is a list of various projects I've worked on.
 
