@@ -8,6 +8,7 @@ Below is a list of various projects I've worked on.
 
 * [Duck Marines](http://tangramgames.dk/games/duckmarines/) <small>Free software remake of ChuChu Rocket</small>
 * GenoSystem <small>Cyberpunk minimalist RPG for the Nintendo Gameboy</small>
+* [imgtogb](https://github.com/SimonLarsen/imgtogb) <small>Utility for converting images into Game Boy tiles and sprites</small>
 
 ## Finished ##
 
