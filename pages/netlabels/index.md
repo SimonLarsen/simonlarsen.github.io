@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Thu, 26 Sep 2013 11:18:17 +0200
+Updated Fri, 18 Oct 2013 13:31:32 +0200
 
 ## IDM / Electronic / Experimental ##
 
@@ -34,6 +34,7 @@ Updated Thu, 26 Sep 2013 11:18:17 +0200
 * [Cascade Records](http://cascaderecords.bandcamp.com/)
 * [Amajin Records](https://amajinrecords.bandcamp.com/)
 * [Wizards Only](https://wizardsonly.bandcamp.com/)
+* [http://redesignyourmindmuzik.bandcamp.com/](REDESIGNYOUMINDMUZIK) *(Some great house/electro as well)*
 
 ## Chiptune ##
 
