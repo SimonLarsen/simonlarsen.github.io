@@ -34,7 +34,7 @@ Updated Fri, 18 Oct 2013 13:31:32 +0200
 * [Cascade Records](http://cascaderecords.bandcamp.com/)
 * [Amajin Records](https://amajinrecords.bandcamp.com/)
 * [Wizards Only](https://wizardsonly.bandcamp.com/)
-* [http://redesignyourmindmuzik.bandcamp.com/](REDESIGNYOUMINDMUZIK) *(Some great house/electro as well)*
+* [REDESIGNYOUMINDMUZIK](http://redesignyourmindmuzik.bandcamp.com/) *(Some great house/electro as well)*
 
 ## Chiptune ##
 
