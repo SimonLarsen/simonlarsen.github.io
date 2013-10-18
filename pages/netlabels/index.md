@@ -34,7 +34,7 @@ Updated Fri, 18 Oct 2013 13:31:32 +0200
 * [Cascade Records](http://cascaderecords.bandcamp.com/)
 * [Amajin Records](https://amajinrecords.bandcamp.com/)
 * [Wizards Only](https://wizardsonly.bandcamp.com/)
-* [REDESIGNYOUMINDMUZIK](http://redesignyourmindmuzik.bandcamp.com/) *(Some great house/electro as well)*
+* [REDESIGNYOUMINDMUZIK](http://redesignyourmindmuzik.bandcamp.com/) <small>(Some great house/electro as well)</small>
 
 ## Chiptune ##
 
@@ -53,9 +53,9 @@ Updated Fri, 18 Oct 2013 13:31:32 +0200
 * [Renegade Hardware](https://soundcloud.com/renegade-hardware)
 * [Horizons music](https://soundcloud.com/horizonsmusic)
 * [Samurai Music Group](https://soundcloud.com/preshasamurai)
-* [Tunguska Electronic Music Society](http://music.tunguskagrooves.com/) *(DnB, Chillout)*
+* [Tunguska Electronic Music Society](http://music.tunguskagrooves.com/) <small>(DnB, Chillout)</small>
 
 ## Miscellaneous ##
 
-* [La bèl netlabel](http://labelnetlabel.com/artists/n-qia) *(Electronic, jazz)*
+* [La bèl netlabel](http://labelnetlabel.com/artists/n-qia) <small>(Electronic, jazz)</small>
 * [Comfort Stand Recordings](http://www.comfortstand.com/)
