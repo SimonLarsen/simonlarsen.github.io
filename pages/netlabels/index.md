@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Fri, 18 Oct 2013 13:31:32 +0200
+Updated Fri, 20 Dec 2013 00:04:41 +0100
 
 ## IDM / Electronic / Experimental ##
 
@@ -36,6 +36,7 @@ Updated Fri, 18 Oct 2013 13:31:32 +0200
 * [Wizards Only](https://wizardsonly.bandcamp.com/)
 * [REDESIGNYOUMINDMUZIK](http://redesignyourmindmuzik.bandcamp.com/) <small>(Some great house/electro as well)</small>
 * [Night Swimmers Records](http://nightswimmers.bandcamp.com/)
+* [Dirty Tapes](http://dirtytapes.bandcamp.com/)
 
 ## Chiptune ##
 
