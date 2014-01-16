@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Tue, 14 Jan 2014 22:19:53 +0100
+Updated Thu, 16 Jan 2014 22:57:25 +0100
 
 ## IDM / Electronic / Experimental ##
 
@@ -38,6 +38,7 @@ Updated Tue, 14 Jan 2014 22:19:53 +0100
 * [Night Swimmers Records](http://nightswimmers.bandcamp.com/)
 * [Dirty Tapes](http://dirtytapes.bandcamp.com/)
 * [HEY WTF Records](http://heywtfrecords.bandcamp.com/)
+* [Radio Juicy](http://radiojuicy.com/)
 
 ## Chiptune ##
 
