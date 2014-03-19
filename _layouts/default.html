@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<meta name="Author" content="Simon Larsen" />
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
-		<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,400italic' rel='stylesheet' type='text/css' />
+		<meta charset="UTF-8">
 		<title>{{ page.title }} | Simon Larsen</title>
+		<link rel="stylesheet" href="/css/style.css" type="text/css">
+		<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato" type="text/css">
 	</head>
 	<body>
-		<div id="container">
-			<div id="header">
+		<header id="header">
+			<h1><a href="/">Simon Larsen</a></h1>
+		</header>
+		<div id="page">
+			<div id="sidebar">
 				<nav>
-					<div id="top-menu">
-						<a name="top"></a>
+					<ul>
+						<li><a href="/">Blog</a></li>
+						<li><a href="/projects">Projects</a></li>
+						<li><a href="/social">Social</></li>
+					</ul>
+					<div id="sidebar-icons">
 						<ul>
-							<li> <a href="/contact">Contact/Social</a> </li>
-							<li> <a href="/pages">Pages</a> </li>
-							<li> <a href="/projects">Projects</a> </li>
-							<li> <a href="/">Blog</a> </li>
+							<li><a href="/social"><i class="fa fa-envelope"></i></a></li>
+							<li><a href="https://twitter.com/SimonLarsen"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="https://github.com/SimonLarsen"><i class="fa fa-github-alt"></i></a></li>
 						</ul>
 					</div>
 				</nav>
-				<h1>Simon Larsen</h1>
-				<h3>Computer science student, musician and hobbyist gamedev</h3>
 			</div>
-			<hr/>
 			<div id="content">
 				<h1>{{ page.title }}</h1>
 				{{ content }}
 			</div>
-			<hr/>
-			<p id="footer">
-				<a href="#top">Back to top</a>
-			</p>
 		</div>
 	</body>
 </html>

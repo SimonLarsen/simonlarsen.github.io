@@ -13,7 +13,7 @@ Found some of my old fractal renderings. Thought I'd put em up here. All done in
 <div class="gallery">
 {% for image in page.images %}
 	<a href="{{ image }}">
-		<img src="{{ image }}" width="300" class="game-thumb" />
+		<img src="{{ image }}" width="60%">
 	</a>
 	</br>
 {% endfor %}

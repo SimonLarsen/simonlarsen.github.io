@@ -1,94 +1,126 @@
 body {
-	background-color: #1c1c1c;
-	background-image: url("/images/bg.png");
-	background-position: center;
-	background-repeat: repeat-y;
-	font-family: "Noto Sans", Arial, sans-serif;
+	font-family: "Lato", sans-serif;
+	background-color: #222222;
+	color: #e3e2e0;
+	font-size: 16px;
+	margin-bottom: 30px;
 }
 
-a, a:visited {
-	color: #8787af;
+a, a:active, a:visited {
 	text-decoration: none;
+	color: #3bc7b8;
+	transition: color 0.25s;
 }
 
 a:hover {
-	color: #57d7ff;
 	text-decoration: none;
-}
-
-#container {
-	color: #dadada;
-	width: 800px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-hr {
-	border: 0px;
-	height: 8px;
-	background: #1c1c1c;
-	width: 800px;
+	color: #21766d;
 }
 
 small {
-	color: #aaaaaa;
+	color: #a5a5a5;
+	font-size: 14px;
 }
 
-#top-menu ul {
-	list-style-type: none;
-}
-#top-menu li {
-	float: right;
-	margin-left: 20px;
+h1 {
+	font-size: 32px;
 }
 
+h2 {
+	font-size: 24px;
+	margin: 0 0 5px 0;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+/* Header */
 #header {
-	padding-left: 50px;
-	padding-right: 50px;
-	padding-top: 10px;
+	width: 550px;
+	margin: 40px auto 35px auto;
 }
 
-#header h1 {
-	text-shadow: 0px 1px #080808;
+#header h1 a {
+	color: #ff4e50;
 }
 
-#header h3 {
-	color: #afd700;
-	font-style: italic;
-	text-shadow: 0px 1px #080808;
+/* Page */
+#page {
+	width: 550px;
+	margin: 0 auto;
+	position: relative;
 }
 
-#footer {
-	text-align: center;
+/* Sidebar */
+#sidebar {
+	width: 160px;
+	top: 0;
+	position: absolute;
+	left: -220px;
+	text-align: right;
 }
 
+#sidebar li {
+	list-style: none;
+	padding: 5px 0 5px 0;
+}
+
+#sidebar a, #sidebar a:active, #sidebar a:visited {
+	color: #e3e2e0;
+}
+
+#sidebar a:hover {
+	color: #ff4e50;
+}
+
+#sidebar-icons li {
+	display: inline;
+	list-style-type: none;
+	padding-left: 8px;
+}
+
+/* Content */
 #content {
-	padding-left: 50px;
-	padding-right: 50px;
+	width: 550px;
+	margin: 0 auto;
+}
+
+#content h2 a {
+	color: #ff4e50;
+}
+
+#content h2 a:hover {
+	color: #ff9c9c;
+}
+
+#content li {
+	margin-bottom: 5px;
+}
+
+/* Post content */
+.post-content {
 	text-align: justify;
 }
 
-#content h2, #content h2 a, #content h2 a:hover, #content h2 a:visited {
-	color: #ff8700;
+img.center {
+	display: block;
+	text-align: center;
+	margin: 0 auto 1em auto;
 }
 
-#content h3 {
-	color: #ffffff;
-}
-
-.post-timestamp {
-	color: #808080;
-	font-weight: bold;
+iframe.center {
+	display: block;
+	text-align: center;
+	margin: 0 auto 1em auto;
+	width: 500px;
+	height: 300px;
 }
 
 .gallery {
 	text-align: center;
 }
 
-.game-thumb {
-	border: 1px solid #8787af;
-}
-
-.game-thumb:hover {
-	border: 1px solid #57d7ff;
+ul.no-bullet {
+	list-style-type: none;
 }
