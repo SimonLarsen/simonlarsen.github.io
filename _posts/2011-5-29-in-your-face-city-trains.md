@@ -22,8 +22,11 @@ Jump over trains with closed doors and try (as much as possible) to run through 
 
 ### Downloads ###
 
-* [Windows binary](https://github.com/downloads/SimonLarsen/iyfct/iyfct-win32.zip) \[Windows 32 bit\]
-* [LÖVE package](https://github.com/downloads/SimonLarsen/iyfct/iyfct.love) \[Win/Linux/OS X\] (Requires [LÖVE](http://love2d.org/))
+IYFCT has not been updated for LÖVE version 0.9.
+The downloads below will only work for version 0.8.
+
+* **Removed until updated** \[Windows 32 bit\]
+* [LÖVE package](https://github.com/SimonLarsen/iyfct/releases/download/v1.01/iyfct-1.01.love) \[Win/Linux/OS X\] (Requires [LÖVE](http://love2d.org/))
 * [Source code](https://github.com/SimonLarsen/iyfct) \[Github\] (GPLv3)
 
 ### Licence / credits ###
