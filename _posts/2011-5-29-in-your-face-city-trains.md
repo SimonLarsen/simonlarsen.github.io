@@ -4,7 +4,7 @@ title: In Your Face City Trains
 ---
 ### Video ###
 
-<iframe src="http://www.youtube.com/embed/KoBsTFz5xqU" frameborder="0" class="center">
+<iframe src="http://www.youtube.com/embed/KoBsTFz5xqU" frameborder="0" class="youtube">
 </iframe>
 
 ### How to play ###

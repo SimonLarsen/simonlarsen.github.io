@@ -109,12 +109,19 @@ img.center {
 	margin: 0 auto 1em auto;
 }
 
-iframe.center {
+.youtube {
 	display: block;
 	text-align: center;
 	margin: 0 auto 1em auto;
 	width: 500px;
 	height: 300px;
+}
+
+iframe.center {
+	display: block;
+	text-align: center;
+	margin: 0 auto 1em auto;
+	width: 100%;
 }
 
 .gallery {

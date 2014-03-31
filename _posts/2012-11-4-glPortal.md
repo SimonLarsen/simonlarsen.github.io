@@ -8,7 +8,7 @@ The actual portals are drawn using the stencil buffer in a pretty straight-forwa
 
 ### Video ###
 
-<iframe src="http://www.youtube.com/embed/_59h0I7LEy0" frameborder="0" class="center">
+<iframe src="http://www.youtube.com/embed/_59h0I7LEy0" frameborder="0" class="youtube">
 </iframe>
 
 ### Source code ###
