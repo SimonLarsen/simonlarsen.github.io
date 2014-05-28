@@ -2,23 +2,9 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Thu, 16 Jan 2014 22:57:25 +0100
+Updated Wed, 28 May 2014 13:31:24 +0200
 
-## IDM / Electronic / Experimental ##
-
-* [Bedroom Research](http://bedroomresearch.bandcamp.com/)
-* [merck records](http://www.merckrecords.com/)
-* [SCHEMATIC](http://www.schematic.net/home.html)
-* [Detroit Underground](http://detroitunderground.net/)
-* [Alkalinear Recordings](http://alkalinearrecordings.tumblr.com/releases)
-* [Element Perspective](http://elementperspective04.bandcamp.com)
-* [Bunkai-Kei records](http://bunkai-kei.com/release/)
-* [MiMi](http://www.clubotaku.org/mimi/uk/main.php)
-* [Clean Error Records](http://cleanerrorrecords.bandcamp.com/)
-* [ALTEMA Records](http://www.altemarecords.jp/)
-* [curious absurdities](http://curious-absurdities.bandcamp.com/)
-
-##Hip hop (mostly experimental and instrumental) ##
+## Hip hop (mostly experimental and instrumental) ##
 
 * [PIR▲.MD](http://piramdrecords.net/eps)
 * [DaP Station](http://dapstation.bandcamp.com/)
@@ -39,6 +25,38 @@ Updated Thu, 16 Jan 2014 22:57:25 +0100
 * [Dirty Tapes](http://dirtytapes.bandcamp.com/)
 * [HEY WTF Records](http://heywtfrecords.bandcamp.com/)
 * [Radio Juicy](http://radiojuicy.com/)
+* [EN Tokyo](https://entokyo.bandcamp.com/)
+* [€//B_$ (CSlashBUnderS)](https://cslashbunders.bandcamp.com/)
+* [Urban Waves Records](http://urbanwavesrecords.com/)
+* [flau](https://flau.bandcamp.com/)
+* [MAD-HOP](http://mad-hop.bandcamp.com/)
+* [Boyoom Connective](https://boyoomconnective.bandcamp.com/)
+* [Jellyfish Recordings](http://jellyfishrecordings.bandcamp.com/)
+* [Shimmy Records](http://shimmyrecords.bandcamp.com/)
+
+## IDM / Electronic / Experimental ##
+
+* [Project Mooncircle](https://projectmooncircle.bandcamp.com/)
+* [Bedroom Research](http://bedroomresearch.bandcamp.com/)
+* [merck records](http://www.merckrecords.com/)
+* [SCHEMATIC](http://www.schematic.net/home.html)
+* [Detroit Underground](http://detroitunderground.net/)
+* [Alkalinear Recordings](http://alkalinearrecordings.tumblr.com/releases)
+* [Element Perspective](http://elementperspective04.bandcamp.com)
+* [Bunkai-Kei records](http://bunkai-kei.com/release/)
+* [MiMi](http://www.clubotaku.org/mimi/uk/main.php)
+* [Clean Error Records](http://cleanerrorrecords.bandcamp.com/)
+* [ALTEMA Records](http://www.altemarecords.jp/)
+* [curious absurdities](http://curious-absurdities.bandcamp.com/)
+* [Kill Quanti](http://killquanti.bandcamp.com/)
+
+## 80s / New wave ##
+
+* [Telefuture](http://telefuturenow.com/)
+
+## Vaporwave / Chillwave ##
+
+* [猫 シ Corp. (Cat System Corp.)](http://catsystemcorp.bandcamp.com/)
 
 ## Chiptune ##
 
