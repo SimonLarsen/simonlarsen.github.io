@@ -2,7 +2,7 @@
 layout: default
 title: Big List O' Awesome Netlabels
 ---
-Updated Wed, 28 May 2014 13:31:24 +0200
+Updated Wed, 28 May 2014 23:41:06 +0200
 
 ## Hip hop (mostly experimental and instrumental) ##
 
@@ -57,6 +57,9 @@ Updated Wed, 28 May 2014 13:31:24 +0200
 ## Vaporwave / Chillwave ##
 
 * [猫 シ Corp. (Cat System Corp.)](http://catsystemcorp.bandcamp.com/)
+* [BEER ON THE RUG](http://beerontherug.bandcamp.com)
+* [Ailanthus Recordings](http://ailanthusrecordings.bandcamp.com/)
+* [fortune 500](http://fortune500.bandcamp.com)
 
 ## Chiptune ##
 
