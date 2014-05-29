@@ -50,13 +50,10 @@ Updated Wed, 28 May 2014 23:41:06 +0200
 * [curious absurdities](http://curious-absurdities.bandcamp.com/)
 * [Kill Quanti](http://killquanti.bandcamp.com/)
 
-## 80s / New wave ##
-
-* [Telefuture](http://telefuturenow.com/)
-
-## Vaporwave / Chillwave ##
+## 80s / New wave / Vaporwave / Chillwave ##
 
 * [猫 シ Corp. (Cat System Corp.)](http://catsystemcorp.bandcamp.com/)
+* [Telefuture](http://telefuturenow.com/)
 * [BEER ON THE RUG](http://beerontherug.bandcamp.com)
 * [Ailanthus Recordings](http://ailanthusrecordings.bandcamp.com/)
 * [fortune 500](http://fortune500.bandcamp.com)
