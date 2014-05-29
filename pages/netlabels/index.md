@@ -67,7 +67,7 @@ Updated Wed, 28 May 2014 23:41:06 +0200
 * [Pause](http://www.iimusic.net/)
 * [8bitpeoples](http://www.8bitpeoples.com/)
 * [Ubiktune](http://ubiktune.com/releases)
-* [Marshare's Emporium](http://marsharem.bandcamp.com/)
+* [Marsharem's Emporium](http://marsharem.bandcamp.com/)
 * [9-bit records](http://9bitrecords.com/)
 * [NoiChan](http://www.noisechannel.org/)
 
