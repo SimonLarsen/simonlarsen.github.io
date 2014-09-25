@@ -4,8 +4,9 @@ body, div, p, a, h1, h2, h3, h4, h5, ul {
 }
 
 body {
-	background-color: #0c0c0c;
-	background-image: url("../img/bg.png");
+	background-color: #000000;
+	background-image: url("../img/bg2.png");
+	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
 }
@@ -40,6 +41,10 @@ div .separator {
 	height: 250px;
 	border-top: 2px solid rgba(255, 255, 255, 0.3);
 	border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+	/*
+	background-image: url("../img/bg2.png");
+	background-size: cover;
+	*/
 }
 
 div .content {
@@ -62,6 +67,13 @@ div .content ul {
 	padding: 0px 10px 0px 10px;
 }
 
+div .content p {
+	text-align: justify;
+	text-indent: 50px;
+	padding: 0px 10px 0px 10px;
+	margin-bottom: 15px;
+}
+
 div .left-box {
 	width: 50%;
 	float: left;
@@ -78,6 +90,13 @@ div .right-box {
 
 h1 {
 	color: #c2c2c2;
+	font-size: 72px;
+	font-weight: normal;
+	text-align: center;
+}
+
+h2 {
+	color: #c2c2c2;
 	font-size: 48px;
 	letter-spacing: 2px;
 	font-weight: normal;
@@ -86,7 +105,7 @@ h1 {
 	margin-bottom: 30px;
 }
 
-h2 {
+h3 {
 	color: #949494;
 	letter-spacing: 3px;
 	font-size: 32px;
@@ -97,4 +116,9 @@ h2 {
 
 div .album-box {
 	padding: 0px 10px 0px 10px;
+}
+
+div .bandcamp {
+	padding: 0px 100px 0px 100px;
+	margin-bottom: 20px;
 }
