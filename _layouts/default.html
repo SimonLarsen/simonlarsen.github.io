@@ -1,37 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="UTF-8">
-		<title>{{ page.title }} | Simon Larsen</title>
-		<link rel="stylesheet" href="/css/style.css" type="text/css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato" type="text/css">
+		<link rel="stylesheet" href="/css/style.css" type="text/css">
+		<title>{{ page.title }} | Simon Larsen</title>
 	</head>
 	<body>
-		<header id="header">
-			<h1><a href="/">Simon Larsen</a></h1>
-		</header>
-		<div id="page">
-			<div id="sidebar">
-				<nav>
-					<ul>
-						<li><a href="/">Blog</a></li>
-						<li><a href="/projects">Projects</a></li>
-						<li><a href="/pages">Pages</a></li>
-						<li><a href="/social">Social</></li>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2 sidebar">
+					<ul class="list-unstyled text-right">
+						<li><a href="/">About</a></li>
+						<li><a href="/games">Games</a></li>
+						<li><a href="/music">Music</a></li>
+						<li><a href="/contact">Contact</a></li>
 					</ul>
-					<div id="sidebar-icons">
-						<ul>
-							<li><a href="/social"><i class="fa fa-envelope"></i></a></li>
-							<li><a href="https://twitter.com/SimonLarsen"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="https://github.com/SimonLarsen"><i class="fa fa-github-alt"></i></a></li>
-						</ul>
-					</div>
-				</nav>
-			</div>
-			<div id="content">
-				<h1>{{ page.title }}</h1>
-				{{ content }}
+					<ul class="list-inline text-right sidebar-icons">
+						<li>
+							<a href="/contact"><i class="fa fa-envelope"></i></a>
+						</li>
+						<li>
+							<a href="https://twitter.com/SimonLarsen"><i class="fa fa-twitter"></i></a>
+						</li>
+						<li>
+							<a href="https://github.com/SimonLarsen"><i class="fa fa-github-alt"></i></a>
+						</li>
+						<li>
+							<a href="https://www.facebook.com/simonjlarsen"><i class="fa fa-facebook-official"></i></a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-xs-10 content">
+					<h1>Simon Larsen</h1>
+
+					{{ content }}
+				</div>
 			</div>
 		</div>
 	</body>
