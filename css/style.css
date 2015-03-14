@@ -29,3 +29,19 @@ h1 {
 	color: #5F89AD;
 	margin-bottom: 32px;
 }
+
+.game-grid {
+
+}
+
+.game-cell {
+	display: inline-block;
+	margin: 8px 8px 8px 8px;
+}
+
+.game-thumb {
+	border: 1px solid #337AB7;
+	width: 180px;
+	height: 160px;
+	display:block;
+}
