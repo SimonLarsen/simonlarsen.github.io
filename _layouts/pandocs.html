@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<style type="text/css">
+			body {
+				padding-top: 40px;
+			}
+
+			h2 {
+				padding-top: 60px;
+				margin-top: -50px;
+			}
+
+			h3 {
+				padding-top: 60px;
+				margin-top: -50px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-contents" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Pan Docs</a>
+				</div>
+				<div class="collapse navbar-collapse" id="navbar-contents">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Overview <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#about-the-pan-docs">About the Pan Docs</a></li>
+								<li><a href="#game-boy-technical-data">Game Boy Technical Data</a></li>
+								<li><a href="#memory-map">Memory Map</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">I/O Ports <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#video-display">Video Display</a></li>
+								<li><a href="#sound-controller">Sound Controller</a></li>
+								<li><a href="#joypad-input">Joypad Input</a></li>
+								<li><a href="#serial-data-transfer-link-cable">Serial Data Transfer</a></li>
+								<li><a href="#timer-and-divider-registers">Timer and Divider Registers</a></li>
+								<li><a href="#interrupts">Interrupts</a></li>
+								<li><a href="#cgb-registers">CGB Registers</a></li>
+								<li><a href="#sgb-functions">SGB Functions</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">CPU Specification <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#cpu-registers-and-flags">CPU Registers and Flags</a></li>
+								<li><a href="#cpu-instruction-set">CPU Instruction Set</a></li>
+								<li><a href="#cpu-comparison-with-z80">CPU Comparision with Z80</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Cartridges <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#the-cartridge-header">The Cartridge Header</a></li>
+								<li><a href="#memory-bank-controllers">Memory Bank Controllers</a></li>
+								<li><a href="#gamegenieshark-cheats">Gamegenie/Shark Cheats</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Other <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#power-up-sequence">Power Up Sequence</a></li>
+								<li><a href="#reducing-power-consumption">Reducing Power Consumption</a></li>
+								<li><a href="#sprite-ram-bug">Sprite RAM Bug</a></li>
+								<li><a href="#external-connectors">External Connectors</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container">
+			{{ content }}
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</body>
+</html>
