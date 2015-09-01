@@ -32,24 +32,26 @@ Any reference to copyrighted material is not presented for monetary gain, but fo
 
 ## Game Boy Technical Data
 
+<div class="table-responsive">
 <table class="table">
-  <tbody>
-    <tr> <td>CPU</td> <td>8-bit (Similar to the Z80 processor)</td> </tr>
-    <tr> <td>Clock Speed</td> <td>4.194304MHz (4.295454MHz for SGB, max. 8.4MHz for CGB)</td> </tr>
-    <tr> <td>Work RAM</td> <td>8K Byte (32K Byte for CGB)</td> </tr>
-    <tr> <td>Video RAM</td> <td>8K Byte (16K Byte for CGB)</td> </tr>
-    <tr> <td>Screen Size</td> <td>2.6”</td> </tr>
-    <tr> <td>Resolution</td> <td>160x144 (20x18 tiles)</td> </tr>
-    <tr> <td>Max sprites</td> <td>Max 40 per screen, 10 per line</td> </tr>
-    <tr> <td>Sprite sizes</td> <td>8x8 or 8x16</td> </tr>
-    <tr> <td>Palettes</td> <td>1x4 BG, 2x3 OBJ (for CGB: 8x4 BG, 8x3 OBJ)</td> </tr>
-    <tr> <td>Colors</td> <td>4 grayshades (32768 colors for CGB)</td> </tr>
-    <tr> <td>Horiz Sync</td> <td>9198 KHz (9420 KHz for SGB)</td> </tr>
-    <tr> <td>Vert Sync</td> <td>59.73 Hz (61.17 Hz for SGB)</td> </tr>
-    <tr> <td>Sound</td> <td>4 channels with stereo sound</td> </tr>
-    <tr> <td>Power</td> <td>DC6V 0.7W (DC3V 0.7W for GB Pocket, DC3V 0.6W for CGB)</td> </tr>
-  </tbody>
+<tbody>
+<tr> <td>CPU</td> <td>8-bit (Similar to the Z80 processor)</td> </tr>
+<tr> <td>Clock Speed</td> <td>4.194304MHz (4.295454MHz for SGB, max. 8.4MHz for CGB)</td> </tr>
+<tr> <td>Work RAM</td> <td>8K Byte (32K Byte for CGB)</td> </tr>
+<tr> <td>Video RAM</td> <td>8K Byte (16K Byte for CGB)</td> </tr>
+<tr> <td>Screen Size</td> <td>2.6”</td> </tr>
+<tr> <td>Resolution</td> <td>160x144 (20x18 tiles)</td> </tr>
+<tr> <td>Max sprites</td> <td>Max 40 per screen, 10 per line</td> </tr>
+<tr> <td>Sprite sizes</td> <td>8x8 or 8x16</td> </tr>
+<tr> <td>Palettes</td> <td>1x4 BG, 2x3 OBJ (for CGB: 8x4 BG, 8x3 OBJ)</td> </tr>
+<tr> <td>Colors</td> <td>4 grayshades (32768 colors for CGB)</td> </tr>
+<tr> <td>Horiz Sync</td> <td>9198 KHz (9420 KHz for SGB)</td> </tr>
+<tr> <td>Vert Sync</td> <td>59.73 Hz (61.17 Hz for SGB)</td> </tr>
+<tr> <td>Sound</td> <td>4 channels with stereo sound</td> </tr>
+<tr> <td>Power</td> <td>DC6V 0.7W (DC3V 0.7W for GB Pocket, DC3V 0.6W for CGB)</td> </tr>
+</tbody>
 </table>
+</div>
 
 ## Memory Map
 
@@ -1169,6 +1171,7 @@ Of course, this works only when actually executing the game on a SGB (and not on
 
 **SGB System Command Table**
 
+<div class="table-responsive">
 <table class="table">
   <thead>
     <tr> <th>Code</th> <th>Name</th> <th>Description</th> </tr>
@@ -1201,6 +1204,7 @@ Of course, this works only when actually executing the game on a SGB (and not on
     <tr> <td>18</td> <td><code>OBJ_TRN</code></td> <td>Super NES OBJ Mode</td> </tr>
   </tbody>
 </table>
+</div>
 
 ### SGB Color Palettes Overview
 
@@ -1463,6 +1467,7 @@ The P-column indicates the recommended Pitch value, the V-column indicates the n
 
 **Sound Effect A Flag Table**
 
+<div class="table-responsive">
 <table class="table table-bordered">
   <thead>
     <tr> <th>Code</th> <th>Description</th> <th>P</th> <th>V</th> <th>Code</th> <th>Description</th> <th>P</th> <th>V</th> </tr>
@@ -1495,10 +1500,13 @@ The P-column indicates the recommended Pitch value, the V-column indicates the n
     <tr> <td>17</td> <td>Jump</td> <td>3</td> <td>1</td> <td>30</td> <td>Small Laser</td> <td>2</td> <td>2</td> </tr>
   </tbody>
 </table>
+</div>
+
 Sound effect A is used for formanto sounds (percussion sounds).
 
 **Sound Effect B Flag Table**
 
+<div class="table-responsive">
 <table class="table table-bordered">
   <thead>
     <tr> <th>Code</th> <th>Description</th> <th>P</th> <th>V</th> <th>Code</th> <th>Description</th> <th>P</th> <th>V</th>
@@ -1521,6 +1529,8 @@ Sound effect A is used for formanto sounds (percussion sounds).
     <tr> <td>0C</td> <td>River</td> <td>3</td> <td>2</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr>
   </tbody>
 </table>
+</div>
+
 Sound effect B is mainly used for looping sounds (sustained sounds).
 
 ## SGB System Control Commands
@@ -2407,6 +2417,7 @@ Only sprites 1 & 2 ($FE00 & $FE04) are not affected by these instructions.
 
 **Cartridge Slot**
 
+<div class="table-responsive">
 <table class="table">
 	<thead>
 		<tr> <th>Pin</th> <th>Name</th> <th>Description</th> </tr>
@@ -2424,12 +2435,14 @@ Only sprites 1 & 2 ($FE00 & $FE04) are not affected by these instructions.
 		<tr> <td>32</td> <td>GND</td> <td>Ground</td> </tr>
 	</tbody>
 </table>
+</div>
 
 **Link Port**
 
 Pin numbers are arranged as 2,4,6 in upper row, 1,3,5 un lower row; outside view of gameboy socket; flat side of socket upside.
 Colors as used in most or all standard link cables, because SIN and SOUT are crossed, colors Red and Orange are exchanged at one cable end.
 
+<div class="table-responsive">
 <table class="table">
 	<thead>
 		<tr> <th>Pin</th> <th>Name</th> <th>Color</th> <th>Description</th> </tr>
@@ -2442,12 +2455,14 @@ Colors as used in most or all standard link cables, because SIN and SOUT are cro
 		<tr> <td>5</td> <td>SCK</td> <td>green</td> <td>Shift Clock</td> </tr> <tr> <td>6</td> <td>GND</td> <td>blue</td> <td>Ground</td> </tr>
 	</tbody>
 </table>
+</div>
 
 <p class="bg-info">Note: The original gameboy used larger plugs (unlike pocket gameboys and newer),
 linking between older/newer gameboys is possible by using cables with one large and one small plug though.</p>
 
 **Stereo Sound Connector (3.5mm, female)**
 
+<div class="table-responsive">
 <table class="table">
 	<thead>
 		<tr><th>Pin</th><th>Description</th></tr>
@@ -2458,6 +2473,7 @@ linking between older/newer gameboys is possible by using cables with one large 
 		<tr><td>Base</td><td>Ground</td></tr>
 	</tbody>
 </table>
+</div>
 
 **External Power Supply**
 
