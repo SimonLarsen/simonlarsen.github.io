@@ -6,23 +6,21 @@ Pan Docs
 
 ## About the Pan Docs
 
-~~~
-=================================================================
-      Everything You Always Wanted To Know About GAMEBOY *
-=================================================================
+<div class="alert alert-info">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+This is a modernized version of the original Pan Docs.
+See <a href="http://bgb.bircd.org/pandocs.htm">http://bgb.bircd.org/pandocs.htm</a> for original.
+</div>
 
-
-                    * but were afraid to ask
-
-
-       Pan of -ATX- Document Updated by contributions from:
+    Everything You Always Wanted To Know About GAMEBOY*
+    *but were afraid to ask
+    
+    Pan of -ATX- Document Updated by contributions from:
     Marat Fayzullin, Pascal Felber, Paul Robson, Martin Korth
-            CPU, SGB, CGB, AUX specs by Martin Korth
-
-
-                 Last updated 10/2001 by nocash
-              Previously updated 4-Mar-98 by kOOPa
-~~~
+    CPU, SGB, CGB, AUX specs by Martin Korth
+    
+    Last updated 10/2001 by nocash
+    Previously updated 4-Mar-98 by kOOPa
 
 ### Forward
 
@@ -128,7 +126,10 @@ The areas from 0000-7FFF and A000-BFFF may be used to connect external hardware.
 CAUTION: Stopping LCD operation (Bit 7 from 1 to 0) may be performed during V-Blank ONLY, disabling the display outside of the V-Blank period may damage the hardware. This appears to be a serious issue, Nintendo is reported to reject any games that do not follow this rule.
 V-blank can be confirmed when the value of LY is greater than or equal to 144. When the display is disabled the screen is blank (white), and VRAM and OAM can be accessed freely.
 
-<p class="bg-warning">LCDC.0 has different Meanings depending on Gameboy Type.</p>
+<div class="alert alert-warning">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+LCDC.0 has different Meanings depending on Gameboy Type.
+</div>
 
 **LCDC.0 - 1) Monochrome Gameboy and SGB: BG Display**
 
@@ -183,7 +184,7 @@ The following are typical when the display is enabled:
     Mode 0  ___000___000___000___000___000___000________________000
     Mode 1  ____________________________________11111111111111_____
 
-The Mode Flag goes through the values 0, 2, and 3 at a cycle of about 109uS. 0 is present about 48.6uS, 2 about 19uS, and 3 about 41uS. This is interrupted every 16.6ms by the VBlank (1). The mode flag stays set at 1 for about 1.08 ms.
+The Mode Flag goes through the values 0, 2, and 3 at a cycle of about 109 µs. 0 is present about 48.6 µs, 2 about 19 µs, and 3 about 41 µs. This is interrupted every 16.6ms by the VBlank (1). The mode flag stays set at 1 for about 1.08 ms.
 
 Mode 0 is present between 201-207 clks, 2 about 77-83 clks, and 3 about 169-175 clks. A complete cycle through these states takes 456 clks. VBlank lasts 4560 clks. A complete screen refresh occurs every 70224 clks.)
 
@@ -271,14 +272,20 @@ Each color is defined by two bytes (Bit 0-7 in first byte).
 
 Much like VRAM, Data in Palette Memory cannot be read/written during the time when the LCD Controller is reading from it. (That is when the STAT register indicates Mode 3).
 
-<p class="bg-info">Note: Initially all background colors are initialized as white.</p>
+<div class="alert alert-info">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+Note: Initially all background colors are initialized as white.
+</div>
 
 **FF6A - OCPS/OBPI - CGB Mode Only - Sprite Palette Index**<br>
 **FF6B - OCPD/OBPD - CGB Mode Only - Sprite Palette Data**
 
 These registers are used to initialize the Sprite Palettes OBP0-7, identically as described above for Background Palettes. Note that four colors may be defined for each OBP Palettes - but only Color 1-3 of each Sprite Palette can be displayed, Color 0 is always transparent, and can be initialized to a don't care value.
 
-<p class="bg-info">Note: Initially all sprite colors are uninitialized.</p>
+<div class="alert alert-info">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+Note: Initially all sprite colors are uninitialized.
+</div>
 
 **RGB Translation by CGBs**
 
@@ -1093,8 +1100,8 @@ When these entries aren't set, the game will still work just like all 'monochrom
 
 **Detecting SGB hardware**
 
-The recommended detection method is to send a MLT_REQ command which enables two (or four) joypads. A normal handheld gameboy will ignore this command, a SGB will now return incrementing joypad IDs each time when deselecting keyboard lines (see MLT_REQ description for details).
-Now read-out joypad state/IDs several times, and if the ID-numbers are changing, then it is a SGB (a normal gameboy would typically always return 0Fh as ID). Finally, when not intending to use more than one joypad, send another MLT_REQ command in order to re-disable the multi-controller mode.
+The recommended detection method is to send a `MLT_REQ` command which enables two (or four) joypads. A normal handheld gameboy will ignore this command, a SGB will now return incrementing joypad IDs each time when deselecting keyboard lines (see `MLT_REQ` description for details).
+Now read-out joypad state/IDs several times, and if the ID-numbers are changing, then it is a SGB (a normal gameboy would typically always return 0Fh as ID). Finally, when not intending to use more than one joypad, send another `MLT_REQ` command in order to re-disable the multi-controller mode.
 
 Detection works regardless of whether and how many joypads are physically connected to the SNES. However, detection works only when having unlocked SGB functions in the cartridge header, as described above.
 
@@ -1106,7 +1113,7 @@ It is also possible to separate between SGB and SGB2 models by examining the ini
     FFh  SGB2 or Pocket Gameboy
     11h  CGB or GBA
 
-Because values 01h and FFh are shared for both handhelds and SGBs, it is still required to use the above MLT_REQ detection procedure. As far as I know the SGB2 doesn't have any extra features which'd require separate SGB2 detection except for curiosity purposes, for example, the game "Tetris DX" chooses to display an alternate SGB border on SGB2s.
+Because values 01h and FFh are shared for both handhelds and SGBs, it is still required to use the above `MLT_REQ` detection procedure. As far as I know the SGB2 doesn't have any extra features which'd require separate SGB2 detection except for curiosity purposes, for example, the game "Tetris DX" chooses to display an alternate SGB border on SGB2s.
 
 Reportedly, some SGB models include link ports (just like handheld gameboy) (my own SGB does not have such an port), possibly this feature is available in SGB2-type models only ???
 
@@ -1164,7 +1171,7 @@ Note that the transfer data should be prepared in VRAM **before** sending the tr
 
 **Avoiding Screen Garbage**
 
-The display will contain 'garbage' during the transfer, this dirt-effect can be avoided by freezing the screen (in the state which has been displayed before the transfer) by using the MASK\_EN command.<br>
+The display will contain 'garbage' during the transfer, this dirt-effect can be avoided by freezing the screen (in the state which has been displayed before the transfer) by using the `MASK_EN` command.<br>
 Of course, this works only when actually executing the game on a SGB (and not on normal handheld gameboys), it'd be thus required to detect the presence of SGB hardware before blindly sending VRAM data.
 
 ### SGB Command Summary
@@ -1281,7 +1288,7 @@ Used to copy pre-defined palette data from SGB system color palette to actual SG
             Bit 7   - Use Attribute File    (0=No, 1=Apply above ATF Number)
     A-F   Not used (zero)
 
-Before using this function, System Palette data should be initialized by PAL_TRN command, and (when used) Attribute File data should be initialized by ATTR_TRN.
+Before using this function, System Palette data should be initialized by `PAL_TRN` command, and (when used) Attribute File data should be initialized by `ATTR_TRN`.
 
 **SGB Command 0Bh - PAL\_TRN**
 
@@ -1383,7 +1390,7 @@ Depending on the writing style, data sets are written from left to right, or fro
 
 **SGB Command 15h - ATTR\_TRN**
 
-Used to initialize Attribute Files (ATFs) in SNES RAM. Each ATF consists of 20x18 color attributes for the gameboy screen. This function does not directly affect display attributes. Instead, one of the defined ATFs may be copied to actual display memory at a later time by using ATTR\_SET or PAL\_SET functions.
+Used to initialize Attribute Files (ATFs) in SNES RAM. Each ATF consists of 20x18 color attributes for the gameboy screen. This function does not directly affect display attributes. Instead, one of the defined ATFs may be copied to actual display memory at a later time by using `ATTR_SET` or `PAL_SET` functions.
 
     Byte  Content
     0     Command*8+Length (fixed length=1)
@@ -1405,8 +1412,8 @@ Used to transfer attributes from Attribute File (ATF) to gameboy window.
     1     Attribute File Number (00-2Ch), Bit 6=Cancel Mask
     2-F   Not used (zero)
 
-When above Bit 6 is set, the gameboy screen becomes re-enabled after the transfer (in case it has been disabled/frozen by MASK\_EN command).
-Note: The same functions may be (optionally) also included in PAL\_SET commands, as described in the chapter about Color Palette Commands.
+When above Bit 6 is set, the gameboy screen becomes re-enabled after the transfer (in case it has been disabled/frozen by `MASK_EN` command).
+Note: The same functions may be (optionally) also included in `PAL_SET` commands, as described in the chapter about Color Palette Commands.
 
 ## SGB Sound Functions
 
@@ -1549,7 +1556,7 @@ Used to mask the gameboy window, among others this can be used to freeze the gam
     2-F   Not used (zero)
 
 Freezing works only if the SNES has stored a picture, ie. if necessary wait one or two frames before freezing (rather than freezing directly after having displayed the picture).
-The Cancel Mask function may be also invoked (optionally) by completion of PAL_SET and ATTR_SET commands.
+The Cancel Mask function may be also invoked (optionally) by completion of `PAL_SET` and `ATTR_SET` commands.
 
 **SGB Command 0Ch - ATRC\_EN**
 
@@ -1656,7 +1663,7 @@ In one player mode, the second joypad (if any) is used for the SGB system progra
 
 **Reading Multiple Controllers (Joypads)**
 
-When having enabled multiple controllers by MLT_REQ, data for each joypad can be read out through JOYPAD register (FF00) as follows: First set P14 and P15 both HIGH (deselect both Buttons and Cursor keys), you can now read the lower 4bits of FF00 which indicate the joypad ID for the following joypad input:
+When having enabled multiple controllers by `MLT_REQ`, data for each joypad can be read out through JOYPAD register (FF00) as follows: First set P14 and P15 both HIGH (deselect both Buttons and Cursor keys), you can now read the lower 4bits of FF00 which indicate the joypad ID for the following joypad input:
 
     0Fh  Joypad 1
     0Eh  Joypad 2
@@ -1669,7 +1676,7 @@ Next, set P14 and P15 low (one after each other) to select Buttons and Cursor li
 
 **SGB Command 13h - CHR\_TRN**
 
-Used to transfer tile data (characters) to SNES Tile memory in VRAM. This normally used to define BG tiles for the SGB Border (see PCT_TRN), but might be also used to define moveable SNES foreground sprites (see OBJ_TRN).
+Used to transfer tile data (characters) to SNES Tile memory in VRAM. This normally used to define BG tiles for the SGB Border (see `PCT_TRN`), but might be also used to define moveable SNES foreground sprites (see `OBJ_TRN`).
 
     Byte  Content
     0     Command*8+Length    (fixed length=1)
@@ -1688,7 +1695,7 @@ When intending to transfer more than 128 tiles, call this function twice (once f
 
 **SGB Command 14h - PCT\_TRN**
 
-Used to transfer tile map data and palette data to SNES BG Map memory in VRAM to be used for the SGB border. The actual tiles must be separately transferred by using the CHR_TRN function.
+Used to transfer tile map data and palette data to SNES BG Map memory in VRAM to be used for the SGB border. The actual tiles must be separately transferred by using the `CHR_TRN` function.
 
     Byte  Content
     0     Command*8+Length    (fixed length=1)
@@ -1712,7 +1719,7 @@ Even though 32x32 map entries are transferred, only upper 32x28 are actually use
 
 **SGB Command 18h - OBJ\_TRN**
 
-Used to transfer OBJ attributes to SNES OAM memory. Unlike all other functions with the ending \_TRN, this function does not use the usual one-shot 4KBytes VRAM transfer method.
+Used to transfer OBJ attributes to SNES OAM memory. Unlike all other functions with the ending `_TRN`, this function does not use the usual one-shot 4KBytes VRAM transfer method.
 Instead, when enabled (below execute bit set), data is permanently (each frame) read out from the lower character line of the gameboy screen. To suppress garbage on the display, the lower line is masked, and only the upper 20x17 characters of the gameboy window are used - the masking method is unknwon - frozen, black, or recommended to be covered by the SGB border, or else ??? Also, when the function is enabled, "system attract mode is not performed" - whatever that means ???
 
     Byte  Content
@@ -2101,7 +2108,10 @@ Contains an 8 bit checksum across the cartridge header bytes 0134-014C. The chec
 
 The lower 8 bits of the result must be the same than the value in this entry.
 
-<p class="bg-danger">The game won't work if this checksum is incorrect.</p>
+<div class="alert alert-warning">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+The game won't work if this checksum is incorrect.
+</div>
 
 **014E-014F - Global Checksum**
 
@@ -2340,7 +2350,10 @@ Stack Pointer=$FFFE
 
 It is not a good idea to assume the above values will always exist. A later version GameBoy could contain different values than these at reset. Always set these registers on reset rather than assume they are as above.
 
-<p class="bg-warning">Please note that GameBoy internal RAM on power up contains random data. All of the GameBoy emulators tend to set all RAM to value $00 on entry.</p>
+<div class="alert alert-warning">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+Please note that GameBoy internal RAM on power up contains random data. All of the GameBoy emulators tend to set all RAM to value $00 on entry.
+</div>
 
 Cart RAM the first time it is accessed on a real GameBoy contains random data. It will only contain known data if the GameBoy code initializes it to some value.
 
@@ -2369,7 +2382,7 @@ When waiting for a vblank event, this would be a BAD example:
         cp    a,144
         jr    nz,@@wait
 
-A better example would be a procedure as shown below. In this case the vblank interrupt must be enabled, and your vblank interrupt procedure must set vblank_flag to a non-zero value.
+A better example would be a procedure as shown below. In this case the vblank interrupt must be enabled, and your vblank interrupt procedure must set `vblank_flag` to a non-zero value.
 
         ld    hl,vblank_flag ;hl=pointer to vblank_flag
         xor   a              ;a=0
@@ -2457,8 +2470,11 @@ Colors as used in most or all standard link cables, because SIN and SOUT are cro
 </table>
 </div>
 
-<p class="bg-info">Note: The original gameboy used larger plugs (unlike pocket gameboys and newer),
-linking between older/newer gameboys is possible by using cables with one large and one small plug though.</p>
+<div class="alert alert-info">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+Note: The original gameboy used larger plugs (unlike pocket gameboys and newer),
+linking between older/newer gameboys is possible by using cables with one large and one small plug though.
+</div>
 
 **Stereo Sound Connector (3.5mm, female)**
 
