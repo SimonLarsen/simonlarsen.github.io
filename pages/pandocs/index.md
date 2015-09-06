@@ -55,7 +55,7 @@ Any reference to copyrighted material is not presented for monetary gain, but fo
 
 The gameboy is having a 16bit address bus, that is used to address ROM, RAM, and I/O registers.
 
-**General Memory Map**
+#### General Memory Map
 
     0000-3FFF   16KB ROM Bank 00     (in cartridge, fixed at bank 00)
     4000-7FFF   16KB ROM Bank 01..NN (in cartridge, switchable bank number)
@@ -70,7 +70,7 @@ The gameboy is having a 16bit address bus, that is used to address ROM, RAM, and
     FF80-FFFE   High RAM (HRAM)
     FFFF        Interrupt Enable Register
 
-**Jump Vectors in First ROM Bank**
+#### Jump Vectors in First ROM Bank
 
 The following addresses are supposed to be used as jump vectors:
 
@@ -79,17 +79,17 @@ The following addresses are supposed to be used as jump vectors:
 
 However, the memory may be used for any other purpose in case that your program doesn't use any (or only some) RST commands or Interrupts. RST commands are 1-byte opcodes that work similiar to CALL opcodes, except that the destination address is fixed.
 
-**Cartridge Header in First ROM Bank**
+#### Cartridge Header in First ROM Bank
 
 The memory at 0100-014F contains the cartridge header. This area contains information about the program, its entry point, checksums, information about the used MBC chip, the ROM and RAM sizes, etc. Most of the bytes in this area are required to be specified correctly. For more information read the chapter about The Cartridge Header.
 
-**External Memory and Hardware**
+#### External Memory and Hardware
 
 The areas from 0000-7FFF and A000-BFFF may be used to connect external hardware. The first area is typically used to address ROM (read only, of course), cartridges with Memory Bank Controllers (MBCs) are additionally using this area to output data (write only) to the MBC chip. The second area is often used to address external RAM, or to address other external hardware (Real Time Clock, etc). External memory is often battery buffered, and may hold saved game positions and high scrore tables (etc.) even when the gameboy is turned of, or when the cartridge is removed. For specific information read the chapter about Memory Bank Controllers.
 
 ## Video Display
 
-**Video I/O Registers**
+#### Video I/O Registers
 
 * [LCD Control Register](#lcd-control-register)
 * [LCD Status Register](#lcd-status-register)
@@ -101,7 +101,7 @@ The areas from 0000-7FFF and A000-BFFF may be used to connect external hardware.
 * [LCD OAM DMA Transfers](#lcd-oam-dma-transfers)
 * [LCD VRAM DMA Transfers (CGB only)](#lcd-vram-dma-transfers-cgb-only)
 
-**Video Memory**
+#### Video Memory
 
 * [VRAM Tile Data](#vram-tile-data)
 * [VRAM Background Maps](#vram-background-maps)
@@ -110,7 +110,7 @@ The areas from 0000-7FFF and A000-BFFF may be used to connect external hardware.
 
 ### LCD Control Register
 
-**FF40 - LCDC - LCD Control (R/W)**
+#### FF40 - LCDC - LCD Control (R/W)
 
     Bit 7 - LCD Display Enable             (0=Off, 1=On)
     Bit 6 - Window Tile Map Display Select (0=9800-9BFF, 1=9C00-9FFF)
@@ -121,7 +121,7 @@ The areas from 0000-7FFF and A000-BFFF may be used to connect external hardware.
     Bit 1 - OBJ (Sprite) Display Enable    (0=Off, 1=On)
     Bit 0 - BG Display (for CGB see below) (0=Off, 1=On)
 
-**LCDC.7 - LCD Display Enable**
+#### LCDC.7 - LCD Display Enable
 
 CAUTION: Stopping LCD operation (Bit 7 from 1 to 0) may be performed during V-Blank ONLY, disabling the display outside of the V-Blank period may damage the hardware. This appears to be a serious issue, Nintendo is reported to reject any games that do not follow this rule.
 V-blank can be confirmed when the value of LY is greater than or equal to 144. When the display is disabled the screen is blank (white), and VRAM and OAM can be accessed freely.
@@ -131,22 +131,22 @@ V-blank can be confirmed when the value of LY is greater than or equal to 144. W
 LCDC.0 has different Meanings depending on Gameboy Type.
 </div>
 
-**LCDC.0 - 1) Monochrome Gameboy and SGB: BG Display**
+#### LCDC.0 - 1) Monochrome Gameboy and SGB: BG Display
 
 When Bit 0 is cleared, the background becomes blank (white). Window and Sprites may still be displayed (if enabled in Bit 1 and/or Bit 5).
 
-**LCDC.0 - 2) CGB in CGB Mode: BG and Window Master Priority**
+#### LCDC.0 - 2) CGB in CGB Mode: BG and Window Master Priority
 
 When Bit 0 is cleared, the background and window lose their priority - the sprites will be always displayed on top of background and window, independently of the priority flags in OAM and BG Map attributes.
 
-**LCDC.0 - 3) CGB in Non CGB Mode: BG and Window Display**
+#### LCDC.0 - 3) CGB in Non CGB Mode: BG and Window Display
 
 When Bit 0 is cleared, both background and window become blank (white), ie. the Window Display Bit (Bit 5) is ignored in that case. Only Sprites may still be displayed (if enabled in Bit 1).
 This is a possible compatibility problem - any monochrome games (if any) that disable the background, but still want to display the window wouldn't work properly on CGBs.
 
 ### LCD Status Register
 
-**FF41 - STAT - LCDC Status (R/W)**
+#### FF41 - STAT - LCDC Status (R/W)
 
     Bit 6 - LYC=LY Coincidence Interrupt (1=Enable) (Read/Write)
     Bit 5 - Mode 2 OAM Interrupt         (1=Enable) (Read/Write)
@@ -190,41 +190,43 @@ Mode 0 is present between 201-207 clks, 2 about 77-83 clks, and 3 about 169-175 
 
 ### LCD Interrupts
 
-**INT 40 - V-Blank Interrupt**
+#### INT 40 - V-Blank Interrupt
 
 The V-Blank interrupt occurs ca. 59.7 times a second on a regular GB and ca. 61.1 times a second on a Super GB (SGB). This interrupt occurs at the beginning of the V-Blank period (LY=144).
 During this period video hardware is not using video ram so it may be freely accessed. This period lasts approximately 1.1 milliseconds.
 
-**INT 48 - LCDC Status Interrupt**
+#### INT 48 - LCDC Status Interrupt
 
 There are various reasons for this interrupt to occur as described by the STAT register ($FF40). One very popular reason is to indicate to the user when the video hardware is about to redraw a given LCD line. This can be useful for dynamically controlling the SCX/SCY registers ($FF43/$FF42) to perform special video effects.
 
 
 ### LCD Position and Scrolling
 
-**FF42 - SCY - Scroll Y (R/W)**
-**FF43 - SCX - Scroll X (R/W)**
+#### FF42 - SCY - Scroll Y (R/W)
+
+#### FF43 - SCX - Scroll X (R/W)
 
 Specifies the position in the 256x256 pixels BG map (32x32 tiles) which is to be displayed at the upper/left LCD display position.
 Values in range from 0-255 may be used for X/Y each, the video controller automatically wraps back to the upper (left) position in BG map when drawing exceeds the lower (right) border of the BG map area.
 
-**FF44 - LY - LCDC Y-Coordinate (R)**
+#### FF44 - LY - LCDC Y-Coordinate (R)
 
 The LY indicates the vertical line to which the present data is transferred to the LCD Driver. The LY can take on any value between 0 through 153. The values between 144 and 153 indicate the V-Blank period. Writing will reset the counter.
 
-**FF45 - LYC - LY Compare (R/W)**
+#### FF45 - LYC - LY Compare (R/W)
 
 The gameboy permanently compares the value of the LYC and LY registers. When both values are identical, the coincident bit in the STAT register becomes set, and (if enabled) a STAT interrupt is requested.
 
-**FF4A - WY - Window Y Position (R/W)**<br>
-**FF4B - WX - Window X Position minus 7 (R/W)**
+#### FF4A - WY - Window Y Position (R/W)
+
+#### FF4B - WX - Window X Position minus 7 (R/W)
 
 Specifies the upper/left positions of the Window area. (The window is an alternate background area which can be displayed above of the normal background. OBJs (sprites) may be still displayed above or behinf the window, just as for normal BG.)
 The window becomes visible (if enabled) when positions are set in range WX=0..166, WY=0..143. A postion of WX=7, WY=0 locates the window at upper left, it is then completly covering normal background.
 
 ### LCD Monochrome Palettes
 
-**FF47 - BGP - BG Palette Data (R/W) - Non CGB Mode Only**
+#### FF47 - BGP - BG Palette Data (R/W) - Non CGB Mode Only
 
 This register assigns gray shades to the color numbers of the BG and Window tiles.
 
@@ -242,17 +244,17 @@ The four possible gray shades are:
 
 In CGB Mode the Color Palettes are taken from CGB Palette Memory instead.
 
-**FF48 - OBP0 - Object Palette 0 Data (R/W) - Non CGB Mode Only**
+#### FF48 - OBP0 - Object Palette 0 Data (R/W) - Non CGB Mode Only
 
 This register assigns gray shades for sprite palette 0. It works exactly as BGP (FF47), except that the lower two bits aren't used because sprite data 00 is transparent.
 
-**FF49 - OBP1 - Object Palette 1 Data (R/W) - Non CGB Mode Only**
+#### FF49 - OBP1 - Object Palette 1 Data (R/W) - Non CGB Mode Only
 
 This register assigns gray shades for sprite palette 1. It works exactly as BGP (FF47), except that the lower two bits aren't used because sprite data 00 is transparent.
 
 ###  LCD Color Palettes (CGB only)
 
-**FF68 - BCPS/BGPI - CGB Mode Only - Background Palette Index**
+#### FF68 - BCPS/BGPI - CGB Mode Only - Background Palette Index
 
 This register is used to address a byte in the CGBs Background Palette Memory. Each two byte in that memory define a color value. The first 8 bytes define Color 0-3 of Palette 0 (BGP0), and so on for BGP1-7.
 
@@ -261,7 +263,7 @@ This register is used to address a byte in the CGBs Background Palette Memory. E
 
 Data can be read/written to/from the specified index address through Register FF69. When the Auto Increment Bit is set then the index is automatically incremented after each **write** to FF69. Auto Increment has no effect when **reading** from FF69, so the index must be manually incremented in that case.
 
-**FF69 - BCPD/BGPD - CGB Mode Only - Background Palette Data**
+#### FF69 - BCPD/BGPD - CGB Mode Only - Background Palette Data
 
 This register allows to read/write data to the CGBs Background Palette Memory, addressed through Register FF68.
 Each color is defined by two bytes (Bit 0-7 in first byte).
@@ -277,8 +279,9 @@ Much like VRAM, Data in Palette Memory cannot be read/written during the time wh
 Note: Initially all background colors are initialized as white.
 </div>
 
-**FF6A - OCPS/OBPI - CGB Mode Only - Sprite Palette Index**<br>
-**FF6B - OCPD/OBPD - CGB Mode Only - Sprite Palette Data**
+#### FF6A - OCPS/OBPI - CGB Mode Only - Sprite Palette Index
+
+#### FF6B - OCPD/OBPD - CGB Mode Only - Sprite Palette Data
 
 These registers are used to initialize the Sprite Palettes OBP0-7, identically as described above for Background Palettes. Note that four colors may be defined for each OBP Palettes - but only Color 1-3 of each Sprite Palette can be displayed, Color 0 is always transparent, and can be initialized to a don't care value.
 
@@ -287,7 +290,7 @@ These registers are used to initialize the Sprite Palettes OBP0-7, identically a
 Note: Initially all sprite colors are uninitialized.
 </div>
 
-**RGB Translation by CGBs**
+#### RGB Translation by CGBs
 
 When developing graphics on PCs, note that the RGB values will have different appearance on CGB displays as on VGA monitors:
 The highest intensity will produce Light Gray color rather than White. The intensities are not linear; the values 10h-1Fh will all appear very bright, while medium and darker colors are ranged at 00h-0Fh.
@@ -295,7 +298,7 @@ The highest intensity will produce Light Gray color rather than White. The inten
 The CGB display will mix colors quite oddly, increasing intensity of only one R,G,B color will also influence the other two R,G,B colors.
 For example, a color setting of 03EFh (Blue=0, Green=1Fh, Red=0Fh) will appear as Neon Green on VGA displays, but on the CGB it'll produce a decently washed out Yellow.
 
-**RGB Translation by GBAs**
+#### RGB Translation by GBAs
 
 Even though GBA is described to be compatible to CGB games, most CGB games are completely unplayable on GBAs because most colors are invisible (black). Of course, colors such like Black and White will appear the same on both CGB and GBA, but medium intensities are arranged completely different.
 
@@ -307,7 +310,7 @@ Asides, this translation method should have been VERY easy to implement in GBA h
 
 ### LCD VRAM Bank (CGB only)
 
-**FF4F - VBK - CGB Mode Only - VRAM Bank**
+#### FF4F - VBK - CGB Mode Only - VRAM Bank
 
 This 1bit register selects the current Video Memory (VRAM) Bank.
 
@@ -317,7 +320,7 @@ Bank 0 contains 192 Tiles, and two background maps, just as for monochrome games
 
 ### LCD OAM DMA Transfers
 
-**FF46 - DMA - DMA Transfer and Start Address (W)**
+#### FF46 - DMA - DMA Transfer and Start Address (W)
 
 Writing to this register launches a DMA transfer from ROM or RAM to OAM memory (sprite attribute table). The written value specifies the transfer source address divided by 100h, ie. source & destination are:
 
@@ -336,32 +339,36 @@ Most programs are executing this procedure from inside of their VBlank procedure
 
 ### LCD VRAM DMA Transfers (CGB only)
 
-**FF51 - HDMA1 - CGB Mode Only - New DMA Source, High**<br>
-**FF52 - HDMA2 - CGB Mode Only - New DMA Source, Low**<br>
-**FF53 - HDMA3 - CGB Mode Only - New DMA Destination, High**<br>
-**FF54 - HDMA4 - CGB Mode Only - New DMA Destination, Low**<br>
-**FF55 - HDMA5 - CGB Mode Only - New DMA Length/Mode/Start**
+#### FF51 - HDMA1 - CGB Mode Only - New DMA Source, High
+
+#### FF52 - HDMA2 - CGB Mode Only - New DMA Source, Low
+
+#### FF53 - HDMA3 - CGB Mode Only - New DMA Destination, High
+
+#### FF54 - HDMA4 - CGB Mode Only - New DMA Destination, Low
+
+#### FF55 - HDMA5 - CGB Mode Only - New DMA Length/Mode/Start
 
 These registers are used to initiate a DMA transfer from ROM or RAM to VRAM. The Source Start Address may be located at 0000-7FF0 or A000-DFF0, the lower four bits of the address are ignored (treated as zero). The Destination Start Address may be located at 8000-9FF0, the lower four bits of the address are ignored (treated as zero), the upper 3 bits are ignored either (destination is always in VRAM).
 
 Writing to FF55 starts the transfer, the lower 7 bits of FF55 specify the Transfer Length (divided by 10h, minus 1). Ie. lengths of 10h-800h bytes can be defined by the values 00h-7Fh. And the upper bit of FF55 indicates the Transfer Mode:
 
-**Bit7=0 - General Purpose DMA**
+#### Bit7=0 - General Purpose DMA
 
 When using this transfer method, all data is transferred at once. The execution of the program is halted until the transfer has completed. Note that the General Purpose DMA blindly attempts to copy the data, even if the LCD controller is currently accessing VRAM. So General Purpose DMA should be used only if the Display is disabled, or during V-Blank, or (for rather short blocks) during H-Blank.
 The execution of the program continues when the transfer has been completed, and FF55 then contains a value if FFh.
 
-**Bit7=1 - H-Blank DMA**
+#### Bit7=1 - H-Blank DMA
 
 The H-Blank DMA transfers 10h bytes of data during each H-Blank, ie. at LY=0-143, no data is transferred during V-Blank (LY=144-153), but the transfer will then continue at LY=00. The execution of the program is halted during the separate transfers, but the program execution continues during the 'spaces' between each data block.
 Note that the program may not change the Destination VRAM bank (FF4F), or the Source ROM/RAM bank (in case data is transferred from bankable memory) until the transfer has completed!
 Reading from Register FF55 returns the remaining length (divided by 10h, minus 1), a value of 0FFh indicates that the transfer has completed. It is also possible to terminate an active H-Blank transfer by writing zero to Bit 7 of FF55. In that case reading from FF55 may return any value for the lower 7 bits, but Bit 7 will be read as "1".
 
-**Confirming if the DMA Transfer is Active**
+#### Confirming if the DMA Transfer is Active
 
 Reading Bit 7 of FF55 can be used to confirm if the DMA transfer is active (1=Not Active, 0=Active). This works under any circumstances - after completion of General Purpose, or H-Blank Transfer, and after manually terminating a H-Blank Transfer.
 
-**Transfer Timings**
+#### Transfer Timings
 
 In both Normal Speed and Double Speed Mode it takes about 8us to transfer a block of 10h bytes. That are 8 cycles in Normal Speed Mode, and 16 'fast' cycles in Double Speed Mode.
 Older MBC controllers (like MBC1-4) and slower ROMs are not guaranteed to support General Purpose or H-Blank DMA, that's because there are always 2 bytes transferred per microsecond (even if the itself program runs it Normal Speed Mode).
@@ -389,11 +396,11 @@ So, each pixel is having a color number in range from 0-3. The color numbers are
 
 The gameboy contains two 32x32 tile background maps in VRAM at addresses 9800h-9BFFh and 9C00h-9FFFh. Each can be used either to display "normal" background, or "window" background.
 
-**BG Map Tile Numbers**
+#### BG Map Tile Numbers
 
 An area of VRAM known as Background Tile Map contains the numbers of tiles to be displayed. It is organized as 32 rows of 32 bytes each. Each byte contains a number of a tile to be displayed. Tile patterns are taken from the Tile Data Table located either at $8000-8FFF or $8800-97FF. In the first case, patterns are numbered with unsigned numbers from 0 to 255 (i.e. pattern #0 lies at address $8000). In the second case, patterns have signed numbers from -128 to 127 (i.e. pattern #0 lies at address $9000). The Tile Data Table address for the background can be selected via LCDC register.
 
-**BG Map Attributes (CGB Mode only)**
+#### BG Map Attributes (CGB Mode only)
 
 In CGB Mode, an additional map of 32x32 bytes is stored in VRAM Bank 1 (each byte defines attributes for the corresponding tile-number map entry in VRAM Bank 0):
 
@@ -408,11 +415,11 @@ When Bit 7 is set, the corresponding BG tile will have priority above all OBJs (
 
 As one background tile has a size of 8x8 pixels, the BG maps may hold a picture of 256x256 pixels, an area of 160x144 pixels of this picture can be displayed on the LCD screen.
 
-**Normal Background (BG)**
+#### Normal Background (BG)
 
 The SCY and SCX registers can be used to scroll the background, allowing to select the origin of the visible 160x144 pixel area within the total 256x256 pixel background map. Background wraps around the screen (i.e. when part of it goes off the screen, it appears on the opposite side.)
 
-**The Window**
+#### The Window
 
 Besides background, there is also a "window" overlaying the background. The window is not scrollable i.e. it is always displayed starting from its left upper corner. The location of a window on the screen can be adjusted via WX and WY registers. Screen coordinates of the top left corner of a window are WX-7,WY. The tiles for the window are stored in the Tile Data Table. Both the Background and the window share the same Tile Data Table.
 
@@ -424,23 +431,23 @@ GameBoy video controller can display up to 40 sprites either in 8x8 or in 8x16 p
 
 Sprite attributes reside in the Sprite Attribute Table (OAM - Object Attribute Memory) at $FE00-FE9F. Each of the 40 entries consists of four bytes with the following meanings:
 
-**Byte0 - Y Position**
+#### Byte0 - Y Position
 
 Specifies the sprites vertical position on the screen (minus 16).
 An offscreen value (for example, Y=0 or Y>=160) hides the sprite.
 
-**Byte1 - X Position**
+#### Byte1 - X Position
 
 Specifies the sprites horizontal position on the screen (minus 8).
 An offscreen value (X=0 or X>=168) hides the sprite, but the sprite
 still affects the priority ordering - a better way to hide a sprite is to set its Y-coordinate offscreen.
 
-**Byte2 - Tile/Pattern Number**
+#### Byte2 - Tile/Pattern Number
 
 Specifies the sprites Tile Number (00-FF). This (unsigned) value selects a tile from memory at 8000h-8FFFh. In CGB Mode this could be either in VRAM Bank 0 or 1, depending on Bit 3 of the following byte.
 In 8x16 mode, the lower bit of the tile number is ignored. Ie. the upper 8x8 tile is "NN AND FEh", and the lower 8x8 tile is "NN OR 01h".
 
-**Byte3 - Attributes/Flags:**
+#### Byte3 - Attributes/Flags:
 
     Bit7   OBJ-to-BG Priority (0=OBJ Above BG, 1=OBJ Behind BG color 1-3)
            (Used for both BG and Window. BG color 0 is always behind OBJ)
@@ -450,14 +457,14 @@ In 8x16 mode, the lower bit of the tile number is ignored. Ie. the upper 8x8 til
     Bit3   Tile VRAM-Bank  **CGB Mode Only**     (0=Bank 0, 1=Bank 1)
     Bit2-0 Palette number  **CGB Mode Only**     (OBP0-7)
 
-**Sprite Priorities and Conflicts**
+#### Sprite Priorities and Conflicts
 
 When sprites with different x coordinate values overlap, the one with the smaller x coordinate (closer to the left) will have priority and appear above any others. This applies in Non CGB Mode only.
 When sprites with the same x coordinate values overlap, they have priority according to table ordering. (i.e. $FE00 - highest, $FE04 - next highest, etc.) In CGB Mode priorities are always assigned like this.
 
 Only 10 sprites can be displayed on any one line. When this limit is exceeded, the lower priority sprites (priorities listed above) won't be displayed. To keep unused sprites from affecting onscreen sprites set their Y coordinate to Y=0 or Y=>144+16. Just setting the X coordinate to X=0 or X=>160+8 on a sprite will hide it but it will still affect other sprites sharing the same lines.
 
-**Writing Data to OAM Memory**
+#### Writing Data to OAM Memory
 
 The recommened method is to write the data to normal RAM first, and to copy that RAM to OAM by using the DMA transfer function, initiated through DMA register (FF46).
 Beside for that, it is also possible to write data directly to the OAM area by using normal LD commands, this works only during the H-Blank and V-Blank periods. The current state of the LCD controller can be read out from the STAT register (FF41).
@@ -470,7 +477,7 @@ When the LCD Controller is drawing the screen it is directly reading from Video 
 
 For this reason the program should verify if VRAM/OAM is accessable before actually reading or writing to it. This is usually done by reading the Mode Bits from the STAT Register (FF41). When doing this (as described in the examples below) you should take care that no interrupts occur between the wait loops and the following memory access - the memory is guaranted to be accessable only for a few cycles directly after the wait loops have completed.
 
-**VRAM (memory at 8000h-9FFFh) is accessable during Mode 0-2**
+#### VRAM (memory at 8000h-9FFFh) is accessable during Mode 0-2
 
     Mode 0 - H-Blank Period,
     Mode 1 - V-Blank Period, and
@@ -486,7 +493,7 @@ A typical procedure that waits for accessibility of VRAM would be:
 Even if the procedure gets executed at the **end** of Mode 0 or 1, it is still proof to assume that VRAM can be accessed for a few more cycles because in either case the following period is Mode 2 which allows access to VRAM either.
 In CGB Mode an alternate method to write data to VRAM is to use the HDMA Function (FF51-FF55).
 
-**OAM (memory at FE00h-FE9Fh) is accessable during Mode 0-1**
+#### OAM (memory at FE00h-FE9Fh) is accessable during Mode 0-1
 
     Mode 0 - H-Blank Period, and
     Mode 1 - V-Blank Period
@@ -509,7 +516,7 @@ When the display is disabled, both VRAM and OAM are accessable at any time. The 
 
 ## Sound Controller
 
-**Sound Overview**
+#### Sound Overview
 
 * [Sound Channel 1 - Tone & Sweep](#sound-channel-1---tone--sweep)
 * [Sound Channel 2 - Tone](#sound-channel-2---tone)
@@ -557,7 +564,7 @@ The change of frequency (NR13,NR14) at each shift is calculated by the following
 
     X(t) = X(t-1) +/- X(t-1)/2^n
 
-**FF11 - NR11 - Channel 1 Sound length/Wave pattern duty (R/W)**
+#### FF11 - NR11 - Channel 1 Sound length/Wave pattern duty (R/W)
 
     Bit 7-6 - Wave Pattern Duty (Read/Write)
     Bit 5-0 - Sound length data (Write Only) (t1: 0-63)
@@ -572,7 +579,7 @@ Wave Duty:
 Sound Length = (64-t1)\*(1/256) seconds
 The Length value is used only if Bit 6 in NR14 is set.
 
-**FF12 - NR12 - Channel 1 Volume Envelope (R/W)**
+#### FF12 - NR12 - Channel 1 Volume Envelope (R/W)
 
     Bit 7-4 - Initial Volume of envelope (0-0Fh) (0=No Sound)
     Bit 3   - Envelope Direction (0=Decrease, 1=Increase)
@@ -581,12 +588,12 @@ The Length value is used only if Bit 6 in NR14 is set.
 
 Length of 1 step = n\*(1/64) seconds
 
-**FF13 - NR13 - Channel 1 Frequency lo (Write Only)**
+#### FF13 - NR13 - Channel 1 Frequency lo (Write Only)
 
 Lower 8 bits of 11 bit frequency (x).  
 Next 3 bit are in NR14 ($FF14)         
                                        
-**FF14 - NR14 - Channel 1 Frequency h  i (R/W)**
+#### FF14 - NR14 - Channel 1 Frequency h  i (R/W)
 
     Bit 7   - Initial (1=Restart Sound)     (Write Only)
     Bit 6   - Counter/consecutive selection (Read/Write)
@@ -599,7 +606,7 @@ Frequency = 131072/(2048-x) Hz
 
 This sound channel works exactly as channel 1, except that it doesn't have a Tone Envelope/Sweep Register.
 
-**FF16 - NR21 - Channel 2 Sound Length/Wave Pattern Duty (R/W)**
+#### FF16 - NR21 - Channel 2 Sound Length/Wave Pattern Duty (R/W)
 
     Bit 7-6 - Wave Pattern Duty (Read/Write)
     Bit 5-0 - Sound length data (Write Only) (t1: 0-63)
@@ -614,7 +621,7 @@ Wave Duty:
 Sound Length = (64-t1)\*(1/256) seconds<br>
 The Length value is used only if Bit 6 in NR24 is set.
 
-**FF17 - NR22 - Channel 2 Volume Envelope (R/W)**
+#### FF17 - NR22 - Channel 2 Volume Envelope (R/W)
 
     Bit 7-4 - Initial Volume of envelope (0-0Fh) (0=No Sound)
     Bit 3   - Envelope Direction (0=Decrease, 1=Increase)
@@ -623,12 +630,12 @@ The Length value is used only if Bit 6 in NR24 is set.
 
 Length of 1 step = n\*(1/64) seconds
 
-**FF18 - NR23 - Channel 2 Frequency lo data (W)**
+#### FF18 - NR23 - Channel 2 Frequency lo data (W)
 
 Frequency's lower 8 bits of 11 bit data (x).<br>
 Next 3 bits are in NR24 ($FF19).
 
-**FF19 - NR24 - Channel 2 Frequency hi data (R/W)**
+#### FF19 - NR24 - Channel 2 Frequency hi data (R/W)
 
     Bit 7   - Initial (1=Restart Sound)     (Write Only)
     Bit 6   - Counter/consecutive selection (Read/Write)
@@ -641,18 +648,18 @@ Frequency = 131072/(2048-x) Hz
 
 This channel can be used to output digital sound, the length of the sample buffer (Wave RAM) is limited to 32 digits. This sound channel can be also used to output normal tones when initializing the Wave RAM by a square wave. This channel doesn't have a volume envelope register.
 
-**FF1A - NR30 - Channel 3 Sound on/off (R/W)**
+#### FF1A - NR30 - Channel 3 Sound on/off (R/W)
 
     Bit 7 - Sound Channel 3 Off  (0=Stop, 1=Playback)  (Read/Write)
 
-**FF1B - NR31 - Channel 3 Sound Length**
+#### FF1B - NR31 - Channel 3 Sound Length
 
     Bit 7-0 - Sound length (t1: 0 - 255)
 
 Sound Length = (256-t1)\*(1/256) seconds<br>
 This value is used only if Bit 6 in NR34 is set.
 
-**FF1C - NR32 - Channel 3 Select output level (R/W)**
+#### FF1C - NR32 - Channel 3 Select output level (R/W)
 
     Bit 6-5 - Select output level (Read/Write)
 
@@ -663,11 +670,11 @@ Possible Output levels are:
     2:  50% Volume (Produce Wave Pattern RAM data shifted once to the right)
     3:  25% Volume (Produce Wave Pattern RAM data shifted twice to the right)
 
-**FF1D - NR33 - Channel 3 Frequency's lower data (W)**
+#### FF1D - NR33 - Channel 3 Frequency's lower data (W)
 
 Lower 8 bits of an 11 bit frequency (x).
 
-**FF1E - NR34 - Channel 3 Frequency's higher data (R/W)**
+#### FF1E - NR34 - Channel 3 Frequency's higher data (R/W)
 
     Bit 7   - Initial (1=Restart Sound)     (Write Only)
     Bit 6   - Counter/consecutive selection (Read/Write)
@@ -676,7 +683,7 @@ Lower 8 bits of an 11 bit frequency (x).
 
 Frequency = 4194304/(64\*(2048-x)) Hz = 65536/(2048-x) Hz.
 
-**FF30-FF3F - Wave Pattern RAM**
+#### FF30-FF3F - Wave Pattern RAM
 
 Contents - Waveform storage for arbitrary sound data
 
@@ -688,14 +695,14 @@ This channel is used to output white noise. This is done by randomly switching t
 
 It is also possible to influence the function of the random generator, so the that the output becomes more regular, resulting in a limited ability to output Tone instead of Noise.
 
-**FF20 - NR41 - Channel 4 Sound Length (R/W)**
+#### FF20 - NR41 - Channel 4 Sound Length (R/W)
 
     Bit 5-0 - Sound length data (t1: 0-63)
 
 Sound Length = (64-t1)\*(1/256) seconds.<br>
 The Length value is used only if Bit 6 in NR44 is set.
 
-**FF21 - NR42 - Channel 4 Volume Envelope (R/W)**
+#### FF21 - NR42 - Channel 4 Volume Envelope (R/W)
 
     Bit 7-4 - Initial Volume of envelope (0-0Fh) (0=No Sound)
     Bit 3   - Envelope Direction (0=Decrease, 1=Increase)
@@ -704,7 +711,7 @@ The Length value is used only if Bit 6 in NR44 is set.
 
 Length of 1 step = n\*(1/64) seconds
 
-**FF22 - NR43 - Channel 4 Polynomial Counter (R/W)**
+#### FF22 - NR43 - Channel 4 Polynomial Counter (R/W)
 
 The amplitude is randomly switched between high and low at the given frequency. A higher frequency will make the noise to appear 'softer'.
 When Bit 3 is set, the output will become more regular, and some frequencies will sound more like Tone than Noise.
@@ -715,7 +722,7 @@ When Bit 3 is set, the output will become more regular, and some frequencies wil
 
 Frequency = 524288 Hz / r / 2^(s+1) (For r=0 assume r=0.5 instead).
 
-**FF23 - NR44 - Channel 4 Counter/consecutive; Inital (R/W)**
+#### FF23 - NR44 - Channel 4 Counter/consecutive; Inital (R/W)
 
     Bit 7   - Initial (1=Restart Sound)     (Write Only)
     Bit 6   - Counter/consecutive selection (Read/Write)
@@ -723,7 +730,7 @@ Frequency = 524288 Hz / r / 2^(s+1) (For r=0 assume r=0.5 instead).
 
 ### Sound Control Registers
 
-**FF24 - NR50 - Channel control / ON-OFF / Volume (R/W)**
+#### FF24 - NR50 - Channel control / ON-OFF / Volume (R/W)
 
 The volume bits specify the "Master Volume" for Left/Right sound output.
 
@@ -734,7 +741,7 @@ The volume bits specify the "Master Volume" for Left/Right sound output.
 
 The Vin signal is received from the game cartridge bus, allowing external hardware in the cartridge to supply a fifth sound channel, additionally to the gameboys internal four channels. As far as I know this feature isn't used by any existing games.
 
-**FF25 - NR51 - Selection of Sound output terminal (R/W)**
+#### FF25 - NR51 - Selection of Sound output terminal (R/W)
 
     Bit 7 - Output sound 4 to SO2 terminal
     Bit 6 - Output sound 3 to SO2 terminal
@@ -745,7 +752,7 @@ The Vin signal is received from the game cartridge bus, allowing external hardwa
     Bit 1 - Output sound 2 to SO1 terminal
     Bit 0 - Output sound 1 to SO1 terminal
 
-**FF26 - NR52 - Sound on/off**
+#### FF26 - NR52 - Sound on/off
 
 If your GB programs don't use sound then write 00h to this register to save 16% or more on GB power consumption. Disabling the sound controller by clearing Bit 7 destroys the contents of all sound registers. Also, it is not possible to access any sound registers (execpt FF26) while the sound controller is disabled.
 
@@ -759,7 +766,7 @@ Bits 0-3 of this register are read only status bits, writing to these bits does 
 
 ## Joypad Input
 
-**FF00 - P1/JOYP - Joypad (R/W)**
+#### FF00 - P1/JOYP - Joypad (R/W)
 
 The eight gameboy buttons/direction keys are arranged in form of a 2x4 matrix. Select either button or direction keys by writing to this register, then read-out bit 0-3.
 
@@ -774,16 +781,16 @@ The eight gameboy buttons/direction keys are arranged in form of a 2x4 matrix. S
 
 Note: Most programs are repeatedly reading from this port several times (the first reads used as short delay, allowing the inputs to stabilize, and only the value from the last read actually used).
 
-**Usage in SGB software**
+#### Usage in SGB software
 
 Beside for normal joypad input, SGB games mis-use the joypad register to output SGB command packets to the SNES, also, SGB programs may read out gamepad states from up to four different joypads which can be connected to the SNES.
 See SGB description for details.
 
-**INT 60 - Joypad Interrupt**
+#### INT 60 - Joypad Interrupt
 
 Joypad interrupt is requested when any of the above Input lines changes from High to Low. Generally this should happen when a key becomes pressed (provided that the button/direction key is enabled by above Bit4/5), however, because of switch bounce, one or more High to Low transitions are usually produced both when pressing or releasing a key.
 
-**Using the Joypad Interrupt**
+#### Using the Joypad Interrupt
 
 It's more or less useless for programmers, even when selecting both buttons and direction keys simultaneously it still cannot recognize all keystrokes, because in that case a bit might be already held low by a button key, and pressing the corresponding direction key would thus cause no difference. The only meaningful purpose of the keystroke interrupt would be to terminate STOP (low power) standby state.
 Also, the joypad interrupt does not appear to work with CGB and GBA hardware (the STOP function can be still terminated by joypad keystrokes though).
@@ -791,11 +798,11 @@ Also, the joypad interrupt does not appear to work with CGB and GBA hardware (th
 
 ## Serial Data Transfer (Link Cable)
 
-**FF01 - SB - Serial transfer data (R/W)**
+#### FF01 - SB - Serial transfer data (R/W)
 
 8 Bits of data to be read/written
 
-**FF02 - SC - Serial Transfer Control (R/W)**
+#### FF02 - SC - Serial Transfer Control (R/W)
 
     Bit 7 - Transfer Start Flag (0=No Transfer, 1=Start)
     Bit 1 - Clock Speed (0=Normal, 1=Fast) ** CGB Mode Only **
@@ -803,7 +810,7 @@ Also, the joypad interrupt does not appear to work with CGB and GBA hardware (th
 
 The clock signal specifies the rate at which the eight data bits in SB (FF01) are transferred. When the gameboy is communicating with another gameboy (or other computer) then either one must supply internal clock, and the other one must use external clock.
 
-**Internal Clock**
+#### Internal Clock
 
 In Non-CGB Mode the gameboy supplies an internal clock of 8192Hz only (allowing to transfer about 1 KByte per second). In CGB Mode four internal clock rates are available, depending on Bit 1 of the SC register, and on whether the CGB Double Speed Mode is used:
 
@@ -812,25 +819,25 @@ In Non-CGB Mode the gameboy supplies an internal clock of 8192Hz only (allowing 
     262144Hz - 32KB/s - Bit 1 set,     Normal
     524288Hz - 64KB/s - Bit 1 set,     Double Speed Mode
 
-**External Clock**
+#### External Clock
 
 The external clock is typically supplied by another gameboy, but might be supplied by another computer (for example if connected to a PCs parallel port), in that case the external clock may have any speed. Even the old/monochrome gameboy is reported to recognizes external clocks of up to 500KHz. And there is no limitiation into the other direction - even when suppling an external clock speed of "1 bit per month", then the gameboy will still eagerly wait for the next bit(s) to be transferred. It isn't required that the clock pulses are sent at an regular interval either.
 
-**Timeouts**
+#### Timeouts
 
 When using external clock then the transfer will not complete until the last bit is received. In case that the second gameboy isn't supplying a clock signal, if it gets turned off, or if there is no second gameboy connected at all) then transfer will never complete. For this reason the transfer procedure should use a timeout counter, and abort the communication if no response has been received during the timeout interval.
 
-**Delays and Synchronization**
+#### Delays and Synchronization
 
 The gameboy that is using internal clock should always execute a small delay between each transfer, in order to ensure that the opponent gameboy has enough time to prepare itself for the next transfer, ie. the gameboy with external clock must have set its transfer start bit before the gameboy with internal clock starts the transfer. Alternately, the two gameboys could switch between internal and external clock for each transferred byte to ensure synchronization.
 
 Transfer is initiated by setting the Transfer Start Flag. This bit is automatically set to 0 at the end of Transfer. Reading this bit can be used to determine if the transfer is still active.
 
-**INT 58 - Serial Interrupt**
+#### INT 58 - Serial Interrupt
 
 When the transfer has completed (ie. after sending/receiving 8 bits, if any) then an interrupt is requested by setting Bit 3 of the IF Register (FF0F). When that interrupt is enabled, then the Serial Interrupt vector at 0058 is called.
 
-**XXXXXX...**
+#### XXXXXX...
 
 Transmitting and receiving serial data is done simultaneously. The received data is automatically stored in SB.
 
@@ -854,19 +861,19 @@ The following code causes $75 to be shifted out the serial port and a byte to be
 
 ## Timer and Divider Registers
 
-**FF04 - DIV - Divider Register (R/W)**
+#### FF04 - DIV - Divider Register (R/W)
 
 This register is incremented at rate of 16384Hz (~16779Hz on SGB). In CGB Double Speed Mode it is incremented twice as fast, ie. at 32768Hz. Writing any value to this register resets it to 00h.
 
-**FF05 - TIMA - Timer counter (R/W)**
+#### FF05 - TIMA - Timer counter (R/W)
 
 This timer is incremented by a clock frequency specified by the TAC register ($FF07). When the value overflows (gets bigger than FFh) then it will be reset to the value specified in TMA (FF06), and an interrupt will be requested, as described below.
 
-**FF06 - TMA - Timer Modulo (R/W)**
+#### FF06 - TMA - Timer Modulo (R/W)
 
 When the TIMA overflows, this data will be loaded.
 
-**FF07 - TAC - Timer Control (R/W)**
+#### FF07 - TAC - Timer Control (R/W)
 
     Bit 2    - Timer Stop  (0=Stop, 1=Start)
     Bits 1-0 - Input Clock Select
@@ -875,7 +882,7 @@ When the TIMA overflows, this data will be loaded.
                10:  65536 Hz   (~67110 Hz SGB)
                11:  16384 Hz   (~16780 Hz SGB)
 
-**INT 50 - Timer Interrupt**
+#### INT 50 - Timer Interrupt
 
 Each time when the timer overflows (ie. when TIMA gets bigger than FFh), then an interrupt is requested by setting Bit 2 in the IF Register (FF0F). When that interrupt is enabled, then the CPU will execute it by calling the timer interrupt vector at 0050h.
 
@@ -885,7 +892,7 @@ The above described Timer is the built-in timer in the gameboy. It has nothing t
 
 ## Interrupts
 
-**IME - Interrupt Master Enable Flag (Write Only)**
+#### IME - Interrupt Master Enable Flag (Write Only)
 
     0 - Disable all Interrupts
     1 - Enable all Interrupts that are enabled in IE Register (FFFF)
@@ -899,7 +906,7 @@ The IME flag is used to disable all interrupts, overriding any enabled bits in t
 
 Whereas `<INT>` means the operation which is automatically executed by the CPU when it executes an interrupt.
 
-**FFFF - IE - Interrupt Enable (R/W)**
+#### FFFF - IE - Interrupt Enable (R/W)
 
     Bit 0: V-Blank  Interrupt Enable  (INT 40h)  (1=Enable)
     Bit 1: LCD STAT Interrupt Enable  (INT 48h)  (1=Enable)
@@ -907,7 +914,7 @@ Whereas `<INT>` means the operation which is automatically executed by the CPU w
     Bit 3: Serial   Interrupt Enable  (INT 58h)  (1=Enable)
     Bit 4: Joypad   Interrupt Enable  (INT 60h)  (1=Enable)
 
-**FF0F - IF - Interrupt Flag (R/W)**
+#### FF0F - IF - Interrupt Flag (R/W)
 
     Bit 0: V-Blank  Interrupt Request (INT 40h)  (1=Request)
     Bit 1: LCD STAT Interrupt Request (INT 48h)  (1=Request)
@@ -917,19 +924,19 @@ Whereas `<INT>` means the operation which is automatically executed by the CPU w
 
 When an interrupt signal changes from low to high, then the corresponding bit in the IF register becomes set. For example, Bit 0 becomes set when the LCD controller enters into the V-Blank period.
 
-**Interrupt Requests**
+#### Interrupt Requests
 
 Any set bits in the IF register are only **requesting** an interrupt to be executed. The actual **execution** happens only if both the IME flag, and the corresponding bit in the IE register are set, otherwise the interrupt 'waits' until both IME and IE allow its execution.
 
-**Interrupt Execution**
+#### Interrupt Execution
 
 When an interrupt gets executed, the corresponding bit in the IF register becomes automatically reset by the CPU, and the IME flag becomes cleared (disabling any further interrupts until the program re-enables the interrupts, typically by using the RETI instruction), and the corresponding Interrupt Vector (that are the addresses in range 0040h-0060h, as shown in IE and IF register decriptions above) becomes called.
 
-**Manually Requesting/Discarding Interrupts**
+#### Manually Requesting/Discarding Interrupts
 
 As the CPU automatically sets and cleares the bits in the IF register it is usually not required to write to the IF register. However, the user may still do that in order to manually request (or discard) interrupts. As for real interrupts, a manually requested interrupt isn't executed unless/until IME and IE allow its execution.
 
-**Interrupt Priorities**
+#### Interrupt Priorities
 
 In the following three situations it might happen that more than 1 bit in the IF register are set, requesting more than one interrupt at once:
 
@@ -943,27 +950,27 @@ In the following three situations it might happen that more than 1 bit in the IF
 
 Provided that IME and IE allow the execution of more than one of the requested interrupts, then the interrupt with the highest priority becomes executed first. The priorities are ordered as the bits in the IE and IF registers, Bit 0 (V-Blank) having the highest priority, and Bit 4 (Joypad) having the lowest priority.
 
-**Nested Interrupts**
+#### Nested Interrupts
 
 The CPU automatically disables all other interrupts by setting IME=0 when it executes an interrupt. Usually IME remains zero until the interrupt procedure returns (and sets IME=1 by the RETI instruction). However, if you want any other interrupts of lower or higher (or same) priority to be allowed to be executed from inside of the interrupt procedure, then you can place an EI instruction into the interrupt procedure.
 
 
 ## CGB Registers
 
-**Forward**
+#### Forward
 
 This chapter describes only CGB (Color Gameboy) registers that didn't fit into normal categories - most CGB registers are described in the chapter about Video Display (Color Palettes, VRAM Bank, VRAM DMA Transfers, and changed meaning of Bit 0 of LCDC Control register). Also, a changed bit is noted in the chapter about the Serial/Link port.
 
-**Unlocking CGB functions**
+#### Unlocking CGB functions
 
 When using any CGB registers (including those in the Video/Link chapters), you must first unlock CGB features by changing byte 0143h in the cartridge header. Typically use a value of 80h for games which support both CGB and monochrome gameboys, and C0h for games which work on CGBs only. Otherwise, the CGB will operate in monochrome "Non CGB" compatibility mode.
 
-**Detecting CGB (and GBA) functions**
+#### Detecting CGB (and GBA) functions
 
 CGB hardware can be detected by examing the CPU accumulator (A-register) directly after startup. A value of 11h indicates CGB (or GBA) hardware, if so, CGB functions can be used (if unlocked, see above).<br>
 When A=11h, you may also examine Bit 0 of the CPUs B-Register to separate between CGB (bit cleared) and GBA (bit set), by that detection it is possible to use 'repaired' color palette data matching for GBA displays.
 
-**FF4D - KEY1 - CGB Mode Only - Prepare Speed Switch**
+#### FF4D - KEY1 - CGB Mode Only - Prepare Speed Switch
 
     Bit 7: Current Speed     (0=Normal, 1=Double) (Read Only)
     Bit 0: Prepare Speed Switch (0=No, 1=Prepare) (Read/Write)
@@ -992,7 +999,7 @@ And the following will keep operating as usual:
 * HDMA Transfer to VRAM
 * All Sound Timings and Frequencies
 
-**FF56 - RP - CGB Mode Only - Infrared Communications Port**
+#### FF56 - RP - CGB Mode Only - Infrared Communications Port
 
 This register allows to input and output data through the CGBs built-in Infrared Port. When reading data, bit 6 and 7 must be set (and obviously Bit 0 must be cleared - if you don't want to receive your own gameboys IR signal). After sending or receiving data you should reset the register to 00h to reduce battery power consumption again.
 
@@ -1003,7 +1010,7 @@ This register allows to input and output data through the CGBs built-in Infrared
 Note that the receiver will adapt itself to the normal level of IR pollution in the air, so if you would send a LED ON signal for a longer period, then the receiver would treat that as normal (=OFF) after a while. For example, a Philips TV Remote Control sends a series of 32 LED ON/OFF pulses (length 10us ON, 17.5us OFF each) instead of a permanent 880us LED ON signal.
 Even though being generally CGB compatible, the GBA does not include an infra-red port.
 
-**FF70 - SVBK - CGB Mode Only - WRAM Bank**
+#### FF70 - SVBK - CGB Mode Only - WRAM Bank
 
 In CGB Mode 32 KBytes internal RAM are available. This memory is divided into 8 banks of 4 KBytes each. Bank 0 is always available in memory at C000-CFFF, Bank 1-7 can be selected into the address space at D000-DFFF.
 
@@ -1011,19 +1018,25 @@ In CGB Mode 32 KBytes internal RAM are available. This memory is divided into 8 
 
 Writing a value of 01h-07h will select Bank 1-7, writing a value of 00h will select Bank 1 either.
 
-**FF6C - Undocumented (FEh) - Bit 0 (Read/Write) - CGB Mode Only**<br>
-**FF72 - Undocumented (00h) - Bit 0-7 (Read/Write)**<br>
-**FF73 - Undocumented (00h) - Bit 0-7 (Read/Write)**<br>
-**FF74 - Undocumented (00h) - Bit 0-7 (Read/Write) - CGB Mode Only**<br>
-**FF75 - Undocumented (8Fh) - Bit 4-6 (Read/Write)**<br>
-**FF76 - Undocumented (00h) - Always 00h (Read Only)**<br>
-**FF77 - Undocumented (00h) - Always 00h (Read Only)**
+#### FF6C - Undocumented (FEh) - Bit 0 (Read/Write) - CGB Mode Only
+
+#### FF72 - Undocumented (00h) - Bit 0-7 (Read/Write)
+
+#### FF73 - Undocumented (00h) - Bit 0-7 (Read/Write)
+
+#### FF74 - Undocumented (00h) - Bit 0-7 (Read/Write) - CGB Mode Only
+
+#### FF75 - Undocumented (8Fh) - Bit 4-6 (Read/Write)
+
+#### FF76 - Undocumented (00h) - Always 00h (Read Only)
+
+#### FF77 - Undocumented (00h) - Always 00h (Read Only)
 
 These are undocumented CGB Registers. The numbers in brackets () indicate the initial values. Purpose of these registers is unknown (if any). Registers FF6C and FF74 are always FFh if the CGB is in Non CGB Mode.
 
 ## SGB Functions
 
-**General Information**
+#### General Information
 
 * [SGB Description](#sgb-description)
 * [SGB Unlocking and Detecting SGB Functions](#sgb-unlocking-and-detecting-sgb-functions)
@@ -1032,7 +1045,7 @@ These are undocumented CGB Registers. The numbers in brackets () indicate the in
 * [SGB Command Summary](#sgb-command-summary)
 * [SGB Color Palettes Overview](#sgb-color-palettes-overview)
 
-**SGB Commands**
+#### SGB Commands
 
 * [SGB Palette Commands](#sgb-palette-commands)
 * [SGB Color Attribute Commands](#sgb-color-attribute-commands)
@@ -1043,45 +1056,45 @@ These are undocumented CGB Registers. The numbers in brackets () indicate the in
 
 ### SGB Description
 
-**General Description**
+#### General Description
 
 Basically, the SGB (Super Gameboy) is an adapter cartridge that allows to play gameboy games on a SNES (Super Nintendo Entertainment System) gaming console. In detail, you plug the gameboy cartridge into the SGB cartridge, then plug the SGB cartridge into the SNES, and then connect the SNES to your TV Set. In result, games can be played and viewed on the TV Set, and are controlled by using the SNES joypad(s).
 
-**More Technical Description**
+#### More Technical Description
 
 The SGB cartridge just contains a normal gameboy CPU and normal gameboy video controller. Normally the video signal from this controller would be sent to the LCD screen, however, in this special case the SNES read out the video signal and displays it on the TV set by using a special SNES BIOS ROM which is located in the SGB cartridge. Also, normal gameboy sound output is forwared to the SNES and output to the TV Set, vice versa, joypad input is forwared from the SNES controller(s) to the gameboy joypad inputs.
 
-**Normal Monochrome Games**
+#### Normal Monochrome Games
 
 Any gameboy games which have been designed for normal monochrome handheld gameboys will work with the SGB hardware as well. The SGB will apply a four color palette to these games by replacing the normal four grayshades. The 160x144 pixel gamescreen is displayed in the middle of the 256x224 pixel SNES screen (the unused area is filled by a screen border bitmap). The user may access built-in menues, allowing to change color palette data, to select between several pre-defined borders, etc.
 
 Games that have been designed to support SGB functions may also access the following additional features:
 
-**Colorized Game Screen**
+#### Colorized Game Screen
 
 There's limited ability to colorize the gamescreen by assigning custom color palettes to each 20x18 display characters, however, this works mainly for static display data such like title screens or status bars, the 20x18 color attribute map is non-scrollable, and it is not possible to assign separate colors to moveable foreground sprites (OBJs), so that animated screen regions will be typically restricted to using a single palette of four colors only.
 
-**SNES Foreground Sprites**
+#### SNES Foreground Sprites
 
 Up to 24 foreground sprites (OBJs) of 8x8 or 16x16 pixels, 16 colors can be displayed. When replacing (or just overlaying) the normal gameboy OBJs by SNES OBJs it'd be thus possible to display OBJs with other colors than normal background area. This method doesn't appear to be very popular, even though it appears to be quite easy to implement, however, the bottommost character line of the gamescreen will be masked out because this area is used to transfer OAM data to the SNES.
 
-**The SGB Border**
+#### The SGB Border
 
 The possibly most popular and most impressive feature is to replace the default SGB screen border by a custom bitmap which is stored in the game cartridge.
 
-**Multiple Joypads**
+#### Multiple Joypads
 
 Up to four joypads can be conected to the SNES, and SGB software may read-out each of these joypads separately, allowing up to four players to play the same game simultaneously. Unlike for multiplayer handheld games, this requires only one game cartridge and only one SGB/SNES, and no link cables are required, the downside is that all players must share the same display screen.
 
-**Sound Functions**
+#### Sound Functions
 
 Beside for normal gameboy sound, a number of digital sound effects is pre-defined in the SNES BIOS, these effects may be accessed quite easily. Programmers whom are familiar with SNES sounds may also access the SNES sound chip, or use the SNES MIDI engine directly in order to produce other sound effects or music.
 
-**Taking Control of the SNES CPU**
+#### Taking Control of the SNES CPU
 
 Finally, it is possible to write program code or data into SNES memory, and to execute such program code by using the SNES CPU.
 
-**SGB System Clock**
+#### SGB System Clock
 
 Because the SGB is synchronized to the SNES CPU, the gameboy system clock is directly chained to the SNES system clock. In result, the gameboy CPU, video controller, timers, and sound frequencies will be all operated approx 2.4% faster as by normal gameboys.
 Basically, this should be no problem, and the game will just run a little bit faster. However sensitive musicians may notice that sound frequencies are a bit too high, programs that support SGB functions may avoid this effect by reducing frequencies of gameboy sounds when having detected SGB hardware.
@@ -1089,7 +1102,7 @@ Also, I think that I've heard that SNES models which use a 50Hz display refresh 
 
 ### SGB Unlocking and Detecting SGB Functions
 
-**Cartridge Header**
+#### Cartridge Header
 
 SGB games are required to have a cartridge header with Nintendo and proper checksum just as normal gameboy games. Also, two special entries must be set in order to unlock SGB functions:
 
@@ -1098,14 +1111,14 @@ SGB games are required to have a cartridge header with Nintendo and proper check
 
 When these entries aren't set, the game will still work just like all 'monochrome' gameboy games, but it cannot access any of the special SGB functions.
 
-**Detecting SGB hardware**
+#### Detecting SGB hardware
 
 The recommended detection method is to send a `MLT_REQ` command which enables two (or four) joypads. A normal handheld gameboy will ignore this command, a SGB will now return incrementing joypad IDs each time when deselecting keyboard lines (see `MLT_REQ` description for details).
 Now read-out joypad state/IDs several times, and if the ID-numbers are changing, then it is a SGB (a normal gameboy would typically always return 0Fh as ID). Finally, when not intending to use more than one joypad, send another `MLT_REQ` command in order to re-disable the multi-controller mode.
 
 Detection works regardless of whether and how many joypads are physically connected to the SNES. However, detection works only when having unlocked SGB functions in the cartridge header, as described above.
 
-**Separating between SGB and SGB2**
+#### Separating between SGB and SGB2
 
 It is also possible to separate between SGB and SGB2 models by examining the inital value of the accumulator (A-register) directly after startup.
 
@@ -1121,7 +1134,7 @@ Reportedly, some SGB models include link ports (just like handheld gameboy) (my 
 
 Command packets (aka Register Files) are transferred from the gameboy to the SNES by using P14 and P15 output lines of the JOYPAD register (FF00h), these lines are normally used to select the two rows in the gameboy keyboard matrix (which still works).
 
-**Transferring Bits**
+#### Transferring Bits
 
 A command packet transfer must be initiated by setting both P14 and P15 to LOW, this will reset and start the SNES packet receiving program. Data is then transferred (LSB first), setting P14=LOW will indicate a "0" bit, and setting P15=LOW will indicate a "1" bit. For example:
 
@@ -1132,7 +1145,8 @@ A command packet transfer must be initiated by setting both P14 and P15 to LOW, 
 Data and reset pulses must be kept LOW for at least 5us. P14 and P15 must be kept both HIGH for at least 15us between any pulses.
 Obviously, it'd be no good idea to access the JOYPAD register during the transfer, for example, in case that your VBlank interrupt procedure reads-out joypad states each frame, be sure to disable that interrupt during the transfer (or disable only the joypad procedure by using a software flag).
 
-**Transferring Packets**
+#### Transferring Packets
+
 Each packet is invoked by a RESET pulse, then 128 bits of data are transferred (16 bytes, LSB of first byte first), and finally, a "0"-bit must be transferred as stop bit. The structure of normal packets is:
 
      1 PULSE Reset
@@ -1152,31 +1166,31 @@ A 60ms (4 frames) delay should be invoked between each packet transfer.
 
 ### SGB VRAM Transfers
 
-**Overview**
+#### Overview
 
 Beside for the packet transfer method, larger data blocks of 4KBytes can be transferred by using the video signal. These transfers are invoked by first sending one of the commands with the ending `_TRN` (by using normal packet transfer), the 4K data block is then read-out by the SNES from gameboy display memory during the next frame.
 
-**Transfer Data**
+#### Transfer Data
 
 Normally, transfer data should be stored at 8000h-8FFFh in gameboy VRAM,
 even though the SNES receives the data in from display scanlines, it will automatically re-produce the same ordering of bits and bytes, as being originally stored at 8000h-8FFFh in gameboy memory.
 
-**Preparing the Display**
+#### Preparing the Display
 
 The above method works only when recursing the following things: BG Map must display unsigned characters 00h-FFh on the screen; 00h..13h in first line, 14h..27h in next line, etc. The gameboy display must be enabled, the display may not be scrolled, OBJ sprites should not overlap the background tiles, the BGP palette register must be set to E4h.
 
-**Transfer Time**
+#### Transfer Time
 
 Note that the transfer data should be prepared in VRAM **before** sending the transfer command packet. The actual transfer starts at the beginning of the next frame after the command has been sent, and the transfer ends at the end of the 5th frame after the command has been sent (not counting the frame in which the command has been sent).
 
-**Avoiding Screen Garbage**
+#### Avoiding Screen Garbage
 
 The display will contain 'garbage' during the transfer, this dirt-effect can be avoided by freezing the screen (in the state which has been displayed before the transfer) by using the `MASK_EN` command.<br>
 Of course, this works only when actually executing the game on a SGB (and not on normal handheld gameboys), it'd be thus required to detect the presence of SGB hardware before blindly sending VRAM data.
 
 ### SGB Command Summary
 
-**SGB System Command Table**
+#### SGB System Command Table
 
 <div class="table-responsive">
 <table class="table">
@@ -1215,16 +1229,16 @@ Of course, this works only when actually executing the game on a SGB (and not on
 
 ### SGB Color Palettes Overview
 
-**Available SNES Palettes**
+#### Available SNES Palettes
 
 The SGB/SNES provides 8 palettes of 16 colors each, each color may be defined out of a selection of 34768 colors (15 bit). Palettes 0-3 are used to colorize the gamescreen, only the first four colors of each of these palettes are used. Palettes 4-7 are used for the SGB Border, all 16 colors of each of these palettes may be used.
 
-**Color 0 Restriction**
+#### Color 0 Restriction
 
 Color 0 of each of the eight palettes is transparent, causing the backdrop color to be displayed instead. The backdrop color is typically defined by the most recently color being assigned to Color 0 (regardless of the palette number being used for that operation).
 Effectively, gamescreen palettes can have only three custom colors each, and SGB border palettes only 15 colors each, additionally, color 0 can be used for for all palettes, which will then all share the same color though.
 
-**Translation of Grayshades into Colors**
+#### Translation of Grayshades into Colors
 
 Because the SGB/SNES reads out the gameboy video controllers display signal, it translates the different grayshades from the signal into SNES colors as such:
 
@@ -1235,17 +1249,17 @@ Because the SGB/SNES reads out the gameboy video controllers display signal, it 
 
 Note that gameboy colors 0-3 are assigned to user-selectable grayshades by the gameboys BGP, OBP1, and OBP2 registers. There is thus no fixed relationship between gameboy colors 0-3 and SNES colors 0-3.
 
-**Using Gameboy BGP/OBP Registers**
+#### Using Gameboy BGP/OBP Registers
 
 A direct translation of color 0-3 into color 0-3 may be produced by setting BGP/OBP registers to a value of 0E4h each. However, in case that your program uses black background for example, then you may internally assign background as "White" at the gameboy side by BGP/OBP registers (which is then interpreted as SNES color 0, which is shared for all SNES palettes). The advantage is that you may define Color 0 as Black at the SNES side, and may assign custom colors for Colors 1-3 of each SNES palette.
 
-**System Color Palette Memory**
+#### System Color Palette Memory
 
 Beside for the actually visible palettes, up to 512 palettes of 4 colors each may be defined in SNES RAM. Basically, this is completely irrelevant because the palettes are just stored in RAM whithout any relationship to the displayed picture, anyways, these pre-defined colors may be transferred to actually visible palettes slightly faster as when transferring palette data by separate command packets.
 
 ### SGB Palette Commands
 
-**SGB Command 00h - PAL01**
+#### SGB Command 00h - PAL01
 
 Transmit color data for SGB palette 0, color 0-3, and for SGB palette 1, color 1-3 (without separate color 0).
 
@@ -1260,19 +1274,19 @@ Transmit color data for SGB palette 0, color 0-3, and for SGB palette 1, color 1
 
 The value transferred as color 0 will be applied for all eight palettes.
 
-**SGB Command 01h - PAL23**
+#### SGB Command 01h - PAL23
 
 Same as above PAL01, but for Palettes 2 and 3 respectively.
 
-**SGB Command 02h - PAL03**
+#### SGB Command 02h - PAL03
 
 Same as above PAL01, but for Palettes 0 and 3 respectively.
 
-**SGB Command 03h - PAL12**
+#### SGB Command 03h - PAL12
 
 Same as above PAL01, but for Palettes 1 and 2 respectively.
 
-**SGB Command 0Ah - PAL\_SET**
+#### SGB Command 0Ah - PAL\_SET
 
 Used to copy pre-defined palette data from SGB system color palette to actual SGB palette.
 
@@ -1290,7 +1304,7 @@ Used to copy pre-defined palette data from SGB system color palette to actual SG
 
 Before using this function, System Palette data should be initialized by `PAL_TRN` command, and (when used) Attribute File data should be initialized by `ATTR_TRN`.
 
-**SGB Command 0Bh - PAL\_TRN**
+#### SGB Command 0Bh - PAL\_TRN
 
 Used to initialize SGB system color palettes in SNES RAM.
 System color palette memory contains 512 pre-defined palettes, these palettes do not directly affect the display, however, the `PAL_SET` command may be later used to transfer four of these 'logical' palettes to actual visible 'physical' SGB palettes. Also, the `OBJ_TRN` function will use groups of 4 System Color Palettes (4\*4 colors) for SNES OBJ palettes (16 colors).
@@ -1308,7 +1322,7 @@ Note: The data is stored at 3000h-3FFFh in SNES memory.
 
 ### SGB Color Attribute Commands
 
-**SGB Command 04h - ATTR\_BLK**
+#### SGB Command 04h - ATTR\_BLK
 
 Used to specify color attributes for the inside or outside of one or more rectangular screen regions.
 
@@ -1338,7 +1352,7 @@ Used to specify color attributes for the inside or outside of one or more rectan
 
 When sending three or more data sets, data is continued in further packet(s). Unused bytes at the end of the last packet should be set to zero. The format of the separate Data Sets is described below.
 
-**SGB Command 05h - ATTR\_LIN**
+#### SGB Command 05h - ATTR\_LIN
 
 Used to specify color attributes of one or more horizontal or vertical character lines.
 
@@ -1356,7 +1370,7 @@ Used to specify color attributes of one or more horizontal or vertical character
 When sending 15 or more data sets, data is continued in further packet(s). Unused bytes at the end of the last packet should be set to zero. The format of the separate Data Sets (one byte each) is described below.
 The length of each line reaches from one end of the screen to the other end. In case that some lines overlap each other, then lines from lastmost data sets will overwrite lines from previous data sets.
 
-**SGB Command 06h - ATTR\_DIV**
+#### SGB Command 06h - ATTR\_DIV
 
 Used to split the screen into two halfes, and to assign separate color attributes to each half, and to the division line between them.
 
@@ -1370,7 +1384,7 @@ Used to split the screen into two halfes, and to assign separate color attribute
     2     X- or Y-Coordinate (depending on H/V bit)
     3-F   Not used (zero)
 
-**SGB Command 07h - ATTR\_CHR**
+#### SGB Command 07h - ATTR\_CHR
 
 Used to specify color attributes for separate characters.
 
@@ -1388,7 +1402,7 @@ Used to specify color attributes for separate characters.
 When sending 41 or more data sets, data is continued in further packet(s). Unused bytes at the end of the last packet should be set to zero. Each data set consists of two bits, indicating the palette number for one character.
 Depending on the writing style, data sets are written from left to right, or from top to bottom. In either case the function wraps to the next row/column when reaching the end of the screen.
 
-**SGB Command 15h - ATTR\_TRN**
+#### SGB Command 15h - ATTR\_TRN
 
 Used to initialize Attribute Files (ATFs) in SNES RAM. Each ATF consists of 20x18 color attributes for the gameboy screen. This function does not directly affect display attributes. Instead, one of the defined ATFs may be copied to actual display memory at a later time by using `ATTR_SET` or `PAL_SET` functions.
 
@@ -1403,7 +1417,7 @@ The ATF data is sent by VRAM-Transfer (4 KBytes).
 
 Each ATF consists of 90 bytes, that are 5 bytes (20x2bits) for each of the 18 character lines of the gameboy window. The two most significant bits of the first byte define the color attribute (0-3) for the first character of the first line, the next two bits the next character, and so on.
 
-**SGB Command 16h - ATTR\_SET**
+#### SGB Command 16h - ATTR\_SET
 
 Used to transfer attributes from Attribute File (ATF) to gameboy window.
 
@@ -1417,7 +1431,7 @@ Note: The same functions may be (optionally) also included in `PAL_SET` commands
 
 ## SGB Sound Functions
 
-**SGB Command 08h - SOUND**
+#### SGB Command 08h - SOUND
 
 Used to start/stop internal sound effect, start/stop sound using internal tone data.
 
@@ -1443,7 +1457,7 @@ See Sound Effect Tables below for a list of available pre-defined effects.
 4. Mute on/off operates on the (BGM) which is reproduced by Sound Effect A, Sound Effect B, and the Super NES APU. A "mute off" flag does not exist by itself.
    When mute flag is set, volume and pitch of Sound Effect A (port 1) and Sound Effect B (port 2) must be set.
 
-**SGB Command 09h - SOU\_TRN**
+#### SGB Command 09h - SOU\_TRN
 
 Used to transfer sound code or data to SNES Audio Processing Unit memory (APU-RAM).
 
@@ -1466,13 +1480,13 @@ Possible destinations in APU-RAM are:
 
 This function may be used to take control of the SNES sound chip, and/or to access the SNES MIDI engine. In either case it requires deeper knowledge of SNES sound programming.
 
-**SGB Sound Effect A/B Tables**
+#### SGB Sound Effect A/B Tables
 
 Below lists the digital sound effects that are pre-defined in the SGB/SNES BIOS, and which can be used with the SGB "SOUND" Command.
 Effect A and B may be simultaneously reproduced.
 The P-column indicates the recommended Pitch value, the V-column indicates the numbers of Voices used. Sound Effect A uses voices 6,7. Sound Effect B uses voices 0,1,4,5. Effects that use less voices will use only the upper voices (eg. 4,5 for Effect B with only two voices).
 
-**Sound Effect A Flag Table**
+#### Sound Effect A Flag Table
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -1511,7 +1525,7 @@ The P-column indicates the recommended Pitch value, the V-column indicates the n
 
 Sound effect A is used for formanto sounds (percussion sounds).
 
-**Sound Effect B Flag Table**
+#### Sound Effect B Flag Table
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -1542,7 +1556,7 @@ Sound effect B is mainly used for looping sounds (sustained sounds).
 
 ## SGB System Control Commands
 
-**SGB Command 17h - MASK\_EN**
+#### SGB Command 17h - MASK\_EN
 
 Used to mask the gameboy window, among others this can be used to freeze the gameboy screen before transferring data through VRAM (the SNES then keeps displaying the gameboy screen, even though VRAM doesn't contain meaningful display information during the transfer).
 
@@ -1558,7 +1572,7 @@ Used to mask the gameboy window, among others this can be used to freeze the gam
 Freezing works only if the SNES has stored a picture, ie. if necessary wait one or two frames before freezing (rather than freezing directly after having displayed the picture).
 The Cancel Mask function may be also invoked (optionally) by completion of `PAL_SET` and `ATTR_SET` commands.
 
-**SGB Command 0Ch - ATRC\_EN**
+#### SGB Command 0Ch - ATRC\_EN
 
 Used to enable/disable Attraction mode. It is totally unclear what an attraction mode is ???, but it is enabled by default.
 
@@ -1567,7 +1581,7 @@ Used to enable/disable Attraction mode. It is totally unclear what an attraction
     1     Attraction Disable  (0=Enable, 1=Disable)
     2-F   Not used (zero)
 
-**SGB Command 0Dh - TEST\_EN**
+#### SGB Command 0Dh - TEST\_EN
 
 Used to enable/disable test mode for "SGB-CPU variable clock speed function". This function is disabled by default.
 
@@ -1578,7 +1592,7 @@ Used to enable/disable test mode for "SGB-CPU variable clock speed function". Th
 
 Maybe intended to determine whether SNES operates at 50Hz or 60Hz display refresh rate ??? Possibly result can be read-out from joypad register ???
 
-**SGB Command 0Eh - ICON\_EN**
+#### SGB Command 0Eh - ICON\_EN
 
 Used to enable/disable ICON function. Possibly meant to enable/disable SGB/SNES popup menues which might otherwise activated during gameboy game play. By default all functions are enabled (0).
 
@@ -1593,7 +1607,7 @@ Used to enable/disable ICON function. Possibly meant to enable/disable SGB/SNES 
 
 Above Bit 2 will suppress all further packets/commands when set, this might be useful when starting a monochrome game from inside of the SGB-menu of a multi-gamepak which contains a collection of different games.
 
-**SGB Command 0Fh - DATA\_SND**
+#### SGB Command 0Fh - DATA\_SND
 
 Used to write one or more bytes directly into SNES Work RAM.
 
@@ -1611,7 +1625,7 @@ Used to write one or more bytes directly into SNES Work RAM.
 Unused bytes at the end of the packet should be set to zero, this function is restricted to a single packet, so that not more than 11 bytes can be defined at once.
 Free Addresses in SNES memory are Bank 0 1800h-1FFFh, Bank 7Fh 0000h-FFFFh.
 
-**SGB Command 10h - DATA\_TRN**
+#### SGB Command 10h - DATA\_TRN
 
 Used to transfer binary code or data directly into SNES RAM.
 
@@ -1628,7 +1642,7 @@ The data is sent by VRAM-Transfer (4 KBytes).
 
 Free Addresses in SNES memory are Bank 0 1800h-1FFFh, Bank 7Fh 0000h-FFFFh. The transfer length is fixed at 4KBytes ???, so that directly writing to the free 2KBytes at 0:1800h would be a not so good idea ???
 
-**SGB Command 12h - JUMP**
+#### SGB Command 12h - JUMP
 
 Used to set the SNES program counter to a specified address. Optionally, it may be used to set a new address for the SNES NMI handler, the NMI handler remains unchanged if all bytes 4-6 are zero.
 
@@ -1646,7 +1660,7 @@ Note: The game "Space Invaders 94" uses this function when selecting "Arcade mod
 
 ## SGB Multiplayer Command
 
-**SGB Command 11h - MLT\_REQ**
+#### SGB Command 11h - MLT\_REQ
 
 Used to request multiplayer mode (ie. input from more than one joypad).
 Because this function provides feedback from the SGB/SNES to the gameboy program, it is also used to detect SGB hardware.
@@ -1661,7 +1675,7 @@ Because this function provides feedback from the SGB/SNES to the gameboy program
 
 In one player mode, the second joypad (if any) is used for the SGB system program. In two player mode, both joypads are used for the game. Because SNES have only two joypad sockets, four player mode requires an external "Multiplayer 5" adapter.
 
-**Reading Multiple Controllers (Joypads)**
+#### Reading Multiple Controllers (Joypads)
 
 When having enabled multiple controllers by `MLT_REQ`, data for each joypad can be read out through JOYPAD register (FF00) as follows: First set P14 and P15 both HIGH (deselect both Buttons and Cursor keys), you can now read the lower 4bits of FF00 which indicate the joypad ID for the following joypad input:
 
@@ -1674,7 +1688,7 @@ Next, set P14 and P15 low (one after each other) to select Buttons and Cursor li
 
 ## SGB Border and OBJ Commands
 
-**SGB Command 13h - CHR\_TRN**
+#### SGB Command 13h - CHR\_TRN
 
 Used to transfer tile data (characters) to SNES Tile memory in VRAM. This normally used to define BG tiles for the SGB Border (see `PCT_TRN`), but might be also used to define moveable SNES foreground sprites (see `OBJ_TRN`).
 
@@ -1693,7 +1707,7 @@ The tile data is sent by VRAM-Transfer (4 KBytes).
 Each tile occupies 16bytes (8x8 pixels, 16 colors each).
 When intending to transfer more than 128 tiles, call this function twice (once for tiles 00h-7Fh, and once for tiles 80h-FFh). Note: The BG/OBJ Bit seems to have no effect and writes to the same VRAM addresses for both BG and OBJ ???
 
-**SGB Command 14h - PCT\_TRN**
+#### SGB Command 14h - PCT\_TRN
 
 Used to transfer tile map data and palette data to SNES BG Map memory in VRAM to be used for the SGB border. The actual tiles must be separately transferred by using the `CHR_TRN` function.
 
@@ -1717,7 +1731,7 @@ Each BG Map Entry consists of a 16bit value as such:
 
 Even though 32x32 map entries are transferred, only upper 32x28 are actually used (256x224 pixels, SNES screen size). The 20x18 entries in the center of the 32x28 area should be set to 0000h as transparent space for the gameboy window to be displayed inside. Reportedly, non-transparent border data will cover the gameboy window.
 
-**SGB Command 18h - OBJ\_TRN**
+#### SGB Command 18h - OBJ\_TRN
 
 Used to transfer OBJ attributes to SNES OAM memory. Unlike all other functions with the ending `_TRN`, this function does not use the usual one-shot 4KBytes VRAM transfer method.
 Instead, when enabled (below execute bit set), data is permanently (each frame) read out from the lower character line of the gameboy screen. To suppress garbage on the display, the lower line is masked, and only the upper 20x17 characters of the gameboy window are used - the masking method is unknwon - frozen, black, or recommended to be covered by the SGB border, or else ??? Also, when the function is enabled, "system attract mode is not performed" - whatever that means ???
@@ -1766,7 +1780,7 @@ The format of SNES OAM MSB Entries is:
 
 ## CPU Registers and Flags
 
-**Registers**
+#### Registers
 
     16bit Hi   Lo   Name/Function
     AF    A    -    Accumulator & Flags
@@ -1778,7 +1792,7 @@ The format of SNES OAM MSB Entries is:
 
 As shown above, most registers can be accessed either as one 16bit register, or as two separate 8bit registers.
 
-**The Flag Register (lower 8bit of AF register)**
+#### The Flag Register (lower 8bit of AF register)
 
     Bit  Name  Set Clr  Expl.
     7    zf    Z   NZ   Zero Flag
@@ -1789,16 +1803,16 @@ As shown above, most registers can be accessed either as one 16bit register, or 
 
 Contains the result from the recent instruction which has affected flags.
 
-**The Zero Flag (Z)**
+#### The Zero Flag (Z)
 
 This bit becomes set (1) if the result of an operation has been zero (0). Used for conditional jumps.
 
-**The Carry Flag (C, or Cy)**
+#### The Carry Flag (C, or Cy)
 
 Becomes set when the result of an addition became bigger than FFh (8bit) or FFFFh (16bit). Or when the result of a subtraction or comparison became less than zero (much as for Z80 and 80x86 CPUs, but unlike as for 65XX and ARM CPUs). Also the flag becomes set when a rotate/shift operation has shifted-out a "1"-bit.
 Used for conditional jumps, and for instructions such like ADC, SBC, RL, RLA, etc.
 
-**The BCD Flags (N, H)**
+#### The BCD Flags (N, H)
 
 These flags are (rarely) used for the DAA instruction only, N Indicates whether the previous instruction has been an addition or subtraction, and H indicates carry for lower 4bits of the result, also for DAA, the C flag must indicate carry for upper 8bits.
 After adding/subtracting two BCD numbers, DAA is intended to convert the result into BCD format; BCD numbers are ranged from 00h to 99h rather than 00h to FFh.
@@ -1811,7 +1825,7 @@ The timings assume a CPU clock frequency of 4.194304 MHz (or 8.4
 MHz for CGB in double speed mode), as all gameboy timings are divideable
 by 4, many people specify timings and clock frequency divided by 4.
 
-**GMB 8bit-Loadcommands**
+#### GMB 8bit-Loadcommands
 
     ld   r,r         xx         4 ---- r=r
     ld   r,n         xx nn      8 ---- r=n
@@ -1833,14 +1847,14 @@ by 4, many people specify timings and clock frequency divided by 4.
     ldd  (HL),A      32         8 ---- (HL)=A, HL=HL-1
     ldd  A,(HL)      3A         8 ---- A=(HL), HL=HL-1
 
-**GMB 16bit-Loadcommands**
+#### GMB 16bit-Loadcommands
 
     ld   rr,nn       x1 nn nn  12 ---- rr=nn (rr may be BC,DE,HL or SP)
     ld   SP,HL       F9         8 ---- SP=HL
     push rr          x5        16 ---- SP=SP-2  (SP)=rr   (rr may be BC,DE,HL,AF)
     pop  rr          x1        12 (AF) rr=(SP)  SP=SP+2   (rr may be BC,DE,HL,AF)
 
-**GMB 8bit-Arithmetic/logical Commands**
+#### GMB 8bit-Arithmetic/logical Commands
 
     add  A,r         8x         4 z0hc A=A+r
     add  A,n         C6 nn      8 z0hc A=A+n
@@ -1873,7 +1887,7 @@ by 4, many people specify timings and clock frequency divided by 4.
     daa              27         4 z-0x decimal adjust akku
     cpl              2F         4 -11- A = A xor FF
 
-**GMB 16bit-Arithmetic/logical Commands**
+#### GMB 16bit-Arithmetic/logical Commands
 
     add  HL,rr     x9           8 -0hc HL = HL+rr     ;rr may be BC,DE,HL,SP
     inc  rr        x3           8 ---- rr = rr+1      ;rr may be BC,DE,HL,SP
@@ -1881,7 +1895,7 @@ by 4, many people specify timings and clock frequency divided by 4.
     add  SP,dd     E8          16 00hc SP = SP +/- dd ;dd is 8bit signed number
     ld   HL,SP+dd  F8          12 00hc HL = SP +/- dd ;dd is 8bit signed number
 
-**GMB Rotate- und Shift-Commands**
+#### GMB Rotate- und Shift-Commands
 
     rlca           07           4 000c rotate akku left
     rla            17           4 000c rotate akku left through carry
@@ -1904,7 +1918,7 @@ by 4, many people specify timings and clock frequency divided by 4.
     srl  r         CB 3x        8 z00c shift right logical (b7=0)
     srl  (HL)      CB 3E       16 z00c shift right logical (b7=0)
 
-**GMB Singlebit Operation Commands**
+#### GMB Singlebit Operation Commands
 
     bit  n,r       CB xx        8 z01- test bit n
     bit  n,(HL)    CB xx       12 z01- test bit n
@@ -1913,7 +1927,7 @@ by 4, many people specify timings and clock frequency divided by 4.
     res  n,r       CB xx        8 ---- reset bit n
     res  n,(HL)    CB xx       16 ---- reset bit n
 
-**GMB CPU-Controlcommands**
+#### GMB CPU-Controlcommands
 
     ccf            3F           4 -00c cy=cy xor 1
     scf            37           4 -001 cy=1
@@ -1923,7 +1937,7 @@ by 4, many people specify timings and clock frequency divided by 4.
     di             F3           4 ---- disable interrupts, IME=0
     ei             FB           4 ---- enable interrupts, IME=1
 
-**GMB Jumpcommands**
+#### GMB Jumpcommands
 
     jp   nn        C3 nn nn    16 ---- jump to nn, PC=nn
     jp   HL        E9           4 ---- jump to HL, PC=HL
@@ -1939,11 +1953,11 @@ by 4, many people specify timings and clock frequency divided by 4.
 
 ## CPU Comparison with Z80
 
-**Comparison with 8080**
+#### Comparison with 8080
 
 Basically, the gameboy CPU works more like an older 8080 CPU rather than like a more powerful Z80 CPU. It is, however, supporting CB-prefixed instructions. Also, all known gameboy assemblers using the more obvious Z80-style syntax, rather than the chaotic 8080-style syntax.
 
-**Comparison with Z80**
+#### Comparison with Z80
 
 Any DD-, ED-, and FD-prefixed instructions are missing, that means no IX-, IY-registers, no block commands, and some other missing commands.
 All exchange instructions have been removed (including total absence of second register set), 16bit memory accesses are mostly missing, and 16bit arithmetic functions are heavily cut-down.
@@ -1951,7 +1965,7 @@ The gameboy has no IN/OUT instructions, instead I/O ports are accessed directly 
 The sign and parity/overflow flags have been removed.
 The gameboy operates approximately as fast as a 4MHz Z80 (8MHz in CGB double speed mode), execution time of all instructions has been rounded up to a multiple of 4 cycles though.
 
-**Moved, Removed, and Added Opcodes**
+#### Moved, Removed, and Added Opcodes
 
     Opcode  Z80             GMB
     ---------------------------------------
@@ -1990,11 +2004,11 @@ Note: The unused (-) opcodes will lock-up the gameboy CPU when used.
 An internal information area is located at 0100-014F in
 each cartridge. It contains the following values:
 
-**0100-0103 - Entry Point**
+#### 0100-0103 - Entry Point
 
 After displaying the Nintendo Logo, the built-in boot procedure jumps to this address (100h), which should then jump to the actual main program in the cartridge. Usually this 4 byte area contains a NOP instruction, followed by a JP 0150h instruction. But not always.
 
-**0104-0133 - Nintendo Logo**
+#### 0104-0133 - Nintendo Logo
 
 These bytes define the bitmap of the Nintendo logo that is displayed when the gameboy gets turned on. The hexdump of this bitmap is:
 
@@ -2004,15 +2018,15 @@ These bytes define the bitmap of the Nintendo logo that is displayed when the ga
 
 The gameboys boot procedure verifies the content of this bitmap (after it has displayed it), and LOCKS ITSELF UP if these bytes are incorrect. A CGB verifies only the first 18h bytes of the bitmap, but others (for example a pocket gameboy) verify all 30h bytes.
 
-**0134-0143 - Title**
+#### 0134-0143 - Title
 
 Title of the game in UPPER CASE ASCII. If it is less than 16 characters then the remaining bytes are filled with 00's. When inventing the CGB, Nintendo has reduced the length of this area to 15 characters, and some months later they had the fantastic idea to reduce it to 11 characters only. The new meaning of the ex-title bytes is described below.
 
-**013F-0142 - Manufacturer Code**
+#### 013F-0142 - Manufacturer Code
 
 In older cartridges this area has been part of the Title (see above), in newer cartridges this area contains an 4 character uppercase manufacturer code. Purpose and Deeper Meaning unknown.
 
-**0143 - CGB Flag**
+#### 0143 - CGB Flag
 
 In older cartridges this byte has been part of the Title (see above). In CGB cartridges the upper bit is used to enable CGB functions. This is required, otherwise the CGB switches itself into Non-CGB-Mode. Typical values are:
 
@@ -2021,11 +2035,11 @@ In older cartridges this byte has been part of the Title (see above). In CGB car
 
 Values with Bit 7 set, and either Bit 2 or 3 set, will switch the gameboy into a special non-CGB-mode with uninitialized palettes. Purpose unknown, eventually this has been supposed to be used to colorize monochrome games that include fixed palette data at a special location in ROM.
 
-**0144-0145 - New Licensee Code**
+#### 0144-0145 - New Licensee Code
 
 Specifies a two character ASCII licensee code, indicating the company or publisher of the game. These two bytes are used in newer games only (games that have been released after the SGB has been invented). Older games are using the header entry at 014B instead.
 
-**0146 - SGB Flag**
+#### 0146 - SGB Flag
 
 Specifies whether the game supports SGB functions, common values are:
 
@@ -2034,7 +2048,7 @@ Specifies whether the game supports SGB functions, common values are:
 
 The SGB disables its SGB functions if this byte is set to another value than 03h.
 
-**0147 - Cartridge Type**
+#### 0147 - Cartridge Type
 
 Specifies which Memory Bank Controller (if any) is used in the cartridge, and if further external hardware exists in the cartridge.
 
@@ -2054,7 +2068,7 @@ Specifies which Memory Bank Controller (if any) is used in the cartridge, and if
     11h  MBC3                     FFh  HuC1+RAM+BATTERY
     12h  MBC3+RAM
 
-**0148 - ROM Size**
+#### 0148 - ROM Size
 
 Specifies the ROM Size of the cartridge. Typically calculated as "32KB shl N".
 
@@ -2070,7 +2084,7 @@ Specifies the ROM Size of the cartridge. Typically calculated as "32KB shl N".
     53h - 1.2MByte (80 banks)
     54h - 1.5MByte (96 banks)
 
-**0149 - RAM Size**
+#### 0149 - RAM Size
 
 Specifies the size of the external RAM in the cartridge (if any).
 
@@ -2081,23 +2095,23 @@ Specifies the size of the external RAM in the cartridge (if any).
 
 When using a MBC2 chip 00h must be specified in this entry, even though the MBC2 includes a built-in RAM of 512 x 4 bits.
 
-**014A - Destination Code**
+#### 014A - Destination Code
 
 Specifies if this version of the game is supposed to be sold in japan, or anywhere else. Only two values are defined.
 
     00h - Japanese
     01h - Non-Japanese
 
-**014B - Old Licensee Code**
+#### 014B - Old Licensee Code
 
 Specifies the games company/publisher code in range 00-FFh. A value of 33h signalizes that the New License Code in header bytes 0144-0145 is used instead.
 (Super GameBoy functions won't work if != $33.)
 
-**014C - Mask ROM Version number**
+#### 014C - Mask ROM Version number
 
 Specifies the version number of the game. That is usually 00h.
 
-**014D - Header Checksum**
+#### 014D - Header Checksum
 
 Contains an 8 bit checksum across the cartridge header bytes 0134-014C. The checksum is calculated as follows:
 
@@ -2113,7 +2127,7 @@ The lower 8 bits of the result must be the same than the value in this entry.
 The game won't work if this checksum is incorrect.
 </div>
 
-**014E-014F - Global Checksum**
+#### 014E-014F - Global Checksum
 
 Contains a 16 bit checksum (upper byte first) across the whole cartridge ROM. Produced by adding all bytes of the cartridge (except for the two checksum bytes). The Gameboy doesn't verify this checksum.
 
@@ -2141,19 +2155,19 @@ This is the first MBC chip for the gameboy. Any newer MBC chips are working simi
 
 Note that the memory in range 0000-7FFF is used for both reading from ROM, and for writing to the MBCs Control Registers.
 
-**0000-3FFF - ROM Bank 00 (Read Only)**
+#### 0000-3FFF - ROM Bank 00 (Read Only)
 
 This area always contains the first 16KBytes of the cartridge ROM.
 
-**4000-7FFF - ROM Bank 01-7F (Read Only)**
+#### 4000-7FFF - ROM Bank 01-7F (Read Only)
 
 This area may contain any of the further 16KByte banks of the ROM, allowing to address up to 125 ROM Banks (almost 2MByte). As described below, bank numbers 20h, 40h, and 60h cannot be used, resulting in the odd amount of 125 banks.
 
-**A000-BFFF - RAM Bank 00-03, if any (Read/Write)**
+#### A000-BFFF - RAM Bank 00-03, if any (Read/Write)
 
 This area is used to address external RAM in the cartridge (if any). External RAM is often battery buffered, allowing to store game positions or high score tables, even if the gameboy is turned off, or if the cartridge is removed from the gameboy. Available RAM sizes are: 2KByte (at A000-A7FF), 8KByte (at A000-BFFF), and 32KByte (in form of four 8K banks at A000-BFFF).
 
-**0000-1FFF - RAM Enable (Write Only)**
+#### 0000-1FFF - RAM Enable (Write Only)
 
 Before external RAM can be read or written, it must be enabled by writing to this address space. It is recommended to disable external RAM after accessing it, in order to protect its contents from damage during power down of the gameboy. Usually the following values are used:
 
@@ -2162,15 +2176,17 @@ Before external RAM can be read or written, it must be enabled by writing to thi
 
 Practically any value with 0Ah in the lower 4 bits enables RAM, and any other value disables RAM.
 
-**2000-3FFF - ROM Bank Number (Write Only)**
+#### 2000-3FFF - ROM Bank Number (Write Only)
 
 Writing to this address space selects the lower 5 bits of the ROM Bank Number (in range 01-1Fh). When 00h is written, the MBC translates that to bank 01h also. That doesn't harm so far, because ROM Bank 00h can be always directly accessed by reading from 0000-3FFF.<br>
 But (when using the register below to specify the upper ROM Bank bits), the same happens for Bank 20h, 40h, and 60h. Any attempt to address these ROM Banks will select Bank 21h, 41h, and 61h instead.
 
-**4000-5FFF - RAM Bank Number - or - Upper Bits of ROM Bank Number (Write Only)**
+#### 4000-5FFF - RAM Bank Number - or - Upper Bits of ROM Bank Number (Write Only)
+
 This 2bit register can be used to select a RAM Bank in range from 00-03h, or to specify the upper two bits (Bit 5-6) of the ROM Bank number, depending on the current ROM/RAM Mode. (See below.)
 
-**6000-7FFF - ROM/RAM Mode Select (Write Only)**
+#### 6000-7FFF - ROM/RAM Mode Select (Write Only)
+
 This 1bit Register selects whether the two bits of the above register should be used as upper two bits of the ROM Bank, or as RAM Bank Number.
 
     00h = ROM Banking Mode (up to 8KByte RAM, 2MByte ROM) (default)
@@ -2180,25 +2196,25 @@ The program may freely switch between both modes, the only limitiation is that o
 
 ### MBC2 (max 256KByte ROM and 512x4 bits RAM)
 
-**0000-3FFF - ROM Bank 00 (Read Only)**
+#### 0000-3FFF - ROM Bank 00 (Read Only)
 
 Same as for MBC1.
 
-**4000-7FFF - ROM Bank 01-0F (Read Only)**
+#### 4000-7FFF - ROM Bank 01-0F (Read Only)
 
 Same as for MBC1, but only a total of 16 ROM banks is supported.
 
-**A000-A1FF - 512x4bits RAM, built-in into the MBC2 chip (Read/Write)**
+#### A000-A1FF - 512x4bits RAM, built-in into the MBC2 chip (Read/Write)
 
 The MBC2 doesn't support external RAM, instead it includes 512x4 bits of built-in RAM (in the MBC2 chip itself). It still requires an external battery to save data during power-off though.
 As the data consists of 4bit values, only the lower 4 bits of the "bytes" in this memory area are used.
 
-**0000-1FFF - RAM Enable (Write Only)**
+#### 0000-1FFF - RAM Enable (Write Only)
 
 The least significant bit of the upper address byte must be zero to enable/disable cart RAM. For example the following addresses can be used to enable/disable cart RAM: 0000-00FF, 0200-02FF, 0400-04FF, ..., 1E00-1EFF.
 The suggested address range to use for MBC2 ram enable/disable is 0000-00FF.
 
-**2000-3FFF - ROM Bank Number (Write Only)**
+#### 2000-3FFF - ROM Bank Number (Write Only)
 
 Writing a value (XXXXBBBB - X = Don't cares, B = bank select bits) into 2000-3FFF area will select an appropriate ROM bank at 4000-7FFF.
 
@@ -2209,38 +2225,39 @@ The suggested address range to use for MBC2 rom bank selection is 2100-21FF.
 
 Beside for the ability to access up to 2MB ROM (128 banks), and 32KB RAM (4 banks), the MBC3 also includes a built-in Real Time Clock (RTC). The RTC requires an external 32.768 kHz Quartz Oscillator, and an external battery (if it should continue to tick when the gameboy is turned off).
 
-**0000-3FFF - ROM Bank 00 (Read Only)**
+#### 0000-3FFF - ROM Bank 00 (Read Only)
 
 Same as for MBC1.
 
-**4000-7FFF - ROM Bank 01-7F (Read Only)**
+#### 4000-7FFF - ROM Bank 01-7F (Read Only)
 
 Same as for MBC1, except that accessing banks 20h, 40h, and 60h is supported now.
 
-**A000-BFFF - RAM Bank 00-03, if any (Read/Write)**<br>
-**A000-BFFF - RTC Register 08-0C (Read/Write)**
+#### A000-BFFF - RAM Bank 00-03, if any (Read/Write)
+
+#### A000-BFFF - RTC Register 08-0C (Read/Write)
 
 Depending on the current Bank Number/RTC Register selection (see below), this memory space is used to access an 8KByte external RAM Bank, or a single RTC Register.
 
-**0000-1FFF - RAM and Timer Enable (Write Only)**
+#### 0000-1FFF - RAM and Timer Enable (Write Only)
 
 Mostly the same as for MBC1, a value of 0Ah will enable reading and writing to external RAM - and to the RTC Registers! A value of 00h will disable either.
 
-**2000-3FFF - ROM Bank Number (Write Only)**
+#### 2000-3FFF - ROM Bank Number (Write Only)
 
 Same as for MBC1, except that the whole 7 bits of the RAM Bank Number are written directly to this address. As for the MBC1, writing a value of 00h, will select Bank 01h instead. All other values 01-7Fh select the corresponding ROM Banks.
 
-**4000-5FFF - RAM Bank Number - or - RTC Register Select (Write Only)**
+#### 4000-5FFF - RAM Bank Number - or - RTC Register Select (Write Only)
 
 As for the MBC1s RAM Banking Mode, writing a value in range for 00h-03h maps the corresponding external RAM Bank (if any) into memory at A000-BFFF.
 When writing a value of 08h-0Ch, this will map the corresponding RTC register into memory at A000-BFFF. That register could then be read/written by accessing any address in that area, typically that is done by using address A000.
 
-**6000-7FFF - Latch Clock Data (Write Only)**
+#### 6000-7FFF - Latch Clock Data (Write Only)
 
 When writing 00h, and then 01h to this register, the current time becomes latched into the RTC registers. The latched data will not change until it becomes latched again, by repeating the write `00h->01h` procedure.
 This is supposed for **reading** from the RTC registers. It is proof to read the latched (frozen) time from the RTC registers, while the clock itself continues to tick in background.
 
-**The Clock Counter Registers**
+#### The Clock Counter Registers
 
     08h  RTC S   Seconds   0-59 (0-3Bh)
     09h  RTC M   Minutes   0-59 (0-3Bh)
@@ -2253,12 +2270,12 @@ This is supposed for **reading** from the RTC registers. It is proof to read the
 
 The Halt Flag is supposed to be set before **writing** to the RTC Registers.
 
-**The Day Counter**
+#### The Day Counter
 
 The total 9 bits of the Day Counter allow to count days in range from 0-511 (0-1FFh). The Day Counter Carry Bit becomes set when this value overflows. In that case the Carry Bit remains set until the program does reset it.
 Note that you can store an offset to the Day Counter in battery RAM. For example, every time you read a non-zero Day Counter, add this Counter to the offset in RAM, and reset the Counter to zero. This method allows to count any number of days, making your program Year-10000-Proof, provided that the cartridge gets used at least every 511 days.
 
-**Delays**
+#### Delays
 
 When accessing the RTC Registers it is recommended to execute a 4ms delay (4 Cycles in Normal Speed Mode) between the separate accesses.
 
@@ -2279,7 +2296,7 @@ However, despite of the above, my own good old selfmade MBC1-EPROM card appears 
 
 Game Shark and Gamegenie are external cartridge adapters that can be plugged between the gameboy and the actual game cartridge. Hexadecimal codes can be then entered for specific games, typically providing things like Infinite Sex, 255 Cigarettes, or Starting directly in Wonderland Level PRO, etc.
 
-**Gamegenie (ROM patches)**
+#### Gamegenie (ROM patches)
 
 Gamegenie codes consist of nine-digit hex numbers, formatted as ABC-DEF-GHI, the meaning of the separate digits is:
 
@@ -2291,7 +2308,7 @@ Gamegenie codes consist of nine-digit hex numbers, formatted as ABC-DEF-GHI, the
 The address should be located in ROM area 0000h-7FFFh, the adapter permanently compares address/old data with address/data being read by the game, and replaces that data by new data if necessary. That method (more or less) prohibits unwanted patching of wrong memory banks. Eventually it is also possible to patch external RAM ?
 Newer devices reportedly allow to specify only the first six digits (optionally). As far as I rememeber, around three or four codes can be used simultaneously.
 
-**Game Shark (RAM patches)**
+#### Game Shark (RAM patches)
 
 Game Shark codes consist of eight-digit hex numbers, formatted as ABCDEFGH, the meaning of the separate digits is:
 
@@ -2428,7 +2445,7 @@ Only sprites 1 & 2 ($FE00 & $FE04) are not affected by these instructions.
 
 ## External Connectors
 
-**Cartridge Slot**
+#### Cartridge Slot
 
 <div class="table-responsive">
 <table class="table">
@@ -2450,7 +2467,7 @@ Only sprites 1 & 2 ($FE00 & $FE04) are not affected by these instructions.
 </table>
 </div>
 
-**Link Port**
+#### Link Port
 
 Pin numbers are arranged as 2,4,6 in upper row, 1,3,5 un lower row; outside view of gameboy socket; flat side of socket upside.
 Colors as used in most or all standard link cables, because SIN and SOUT are crossed, colors Red and Orange are exchanged at one cable end.
@@ -2476,7 +2493,7 @@ Note: The original gameboy used larger plugs (unlike pocket gameboys and newer),
 linking between older/newer gameboys is possible by using cables with one large and one small plug though.
 </div>
 
-**Stereo Sound Connector (3.5mm, female)**
+#### Stereo Sound Connector (3.5mm, female)
 
 <div class="table-responsive">
 <table class="table">
@@ -2491,6 +2508,6 @@ linking between older/newer gameboys is possible by using cables with one large 
 </table>
 </div>
 
-**External Power Supply**
+#### External Power Supply
 
 ...
