@@ -9,7 +9,7 @@ Pan Docs
 <div class="alert alert-info">
 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 This is a modernized version of the original Pan Docs.
-See <a href="http://bgb.bircd.org/pandocs.htm">http://bgb.bircd.org/pandocs.htm</a> for original.
+See <a href="http://bgb.bircd.org/pandocs.htm">http://bgb.bircd.org/pandocs.htm</a> for original version.
 </div>
 
     Everything You Always Wanted To Know About GAMEBOY*
@@ -276,7 +276,7 @@ Much like VRAM, Data in Palette Memory cannot be read/written during the time wh
 
 <div class="alert alert-info">
 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-Note: Initially all background colors are initialized as white.
+Initially all background colors are initialized as white.
 </div>
 
 #### FF6A - OCPS/OBPI - CGB Mode Only - Sprite Palette Index
@@ -287,7 +287,7 @@ These registers are used to initialize the Sprite Palettes OBP0-7, identically a
 
 <div class="alert alert-info">
 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-Note: Initially all sprite colors are uninitialized.
+Initially all sprite colors are uninitialized.
 </div>
 
 #### RGB Translation by CGBs
@@ -510,9 +510,10 @@ Beside for that, OAM can be accessed at any time by using the DMA Function (FF46
 
 The two wait loops ensure that Mode 0 or 1 will last for a few clock cycles after completion of the procedure. In V-Blank period it might be recommended to skip the whole procedure - and in most cases using the above mentioned DMA function would be more recommended anyways.
 
-**Note**
-
+<div class="alert alert-info">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 When the display is disabled, both VRAM and OAM are accessable at any time. The downside is that the screen is blank (white) during this period, so that disabling the display would be recommended only during initialization.
+</div>
 
 ## Sound Controller
 
@@ -779,7 +780,10 @@ The eight gameboy buttons/direction keys are arranged in form of a 2x4 matrix. S
     Bit 1 - P11 Input Left  or Button B (0=Pressed) (Read Only)
     Bit 0 - P10 Input Right or Button A (0=Pressed) (Read Only)
 
-Note: Most programs are repeatedly reading from this port several times (the first reads used as short delay, allowing the inputs to stabilize, and only the value from the last read actually used).
+<div class="alert alert-info">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+Most programs are repeatedly reading from this port several times (the first reads used as short delay, allowing the inputs to stabilize, and only the value from the last read actually used).
+</div>
 
 #### Usage in SGB software
 
@@ -886,9 +890,10 @@ When the TIMA overflows, this data will be loaded.
 
 Each time when the timer overflows (ie. when TIMA gets bigger than FFh), then an interrupt is requested by setting Bit 2 in the IF Register (FF0F). When that interrupt is enabled, then the CPU will execute it by calling the timer interrupt vector at 0050h.
 
-**Note**
-
+<div class="alert alert-info">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 The above described Timer is the built-in timer in the gameboy. It has nothing to do with the MBC3s battery buffered Real Time Clock - that's a completely different thing, described in the chapter about Memory Banking Controllers.
+</div>
 
 ## Interrupts
 
@@ -1318,7 +1323,11 @@ The palette data is sent by VRAM-Transfer (4 KBytes).
     000-FFF  Data for System Color Palette 0-511
 
 Each Palette consists of four 16bit-color definitions (8 bytes).
-Note: The data is stored at 3000h-3FFFh in SNES memory.
+
+<div class="alert alert-warning">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+The data is stored at 3000h-3FFFh in SNES memory.
+</div>
 
 ### SGB Color Attribute Commands
 
@@ -1961,7 +1970,7 @@ Basically, the gameboy CPU works more like an older 8080 CPU rather than like a 
 
 Any DD-, ED-, and FD-prefixed instructions are missing, that means no IX-, IY-registers, no block commands, and some other missing commands.
 All exchange instructions have been removed (including total absence of second register set), 16bit memory accesses are mostly missing, and 16bit arithmetic functions are heavily cut-down.
-The gameboy has no IN/OUT instructions, instead I/O ports are accessed directly by normal LD instructions, or by special LD (FF00+n) opcodes.
+The gameboy has no IN/OUT instructions, instead I/O ports are accessed directly by normal LD instructions, or by special `LD (FF00+n)` opcodes.
 The sign and parity/overflow flags have been removed.
 The gameboy operates approximately as fast as a 4MHz Z80 (8MHz in CGB double speed mode), execution time of all instructions has been rounded up to a multiple of 4 cycles though.
 
@@ -1997,7 +2006,7 @@ The gameboy operates approximately as fast as a 4MHz Z80 (8MHz in CGB double spe
     FD      <IY>            -
     CB3X    SLL  r/(HL)     SWAP r/(HL)
 
-Note: The unused (-) opcodes will lock-up the gameboy CPU when used.
+Note: The unused `-` opcodes will lock-up the gameboy CPU when used.
 
 ## The Cartridge Header
 
@@ -2006,7 +2015,7 @@ each cartridge. It contains the following values:
 
 #### 0100-0103 - Entry Point
 
-After displaying the Nintendo Logo, the built-in boot procedure jumps to this address (100h), which should then jump to the actual main program in the cartridge. Usually this 4 byte area contains a NOP instruction, followed by a JP 0150h instruction. But not always.
+After displaying the Nintendo Logo, the built-in boot procedure jumps to this address (100h), which should then jump to the actual main program in the cartridge. Usually this 4 byte area contains a NOP instruction, followed by a `JP 0150h` instruction. But not always.
 
 #### 0104-0133 - Nintendo Logo
 
@@ -2016,7 +2025,7 @@ These bytes define the bitmap of the Nintendo logo that is displayed when the ga
     00 08 11 1F 88 89 00 0E DC CC 6E E6 DD DD D9 99
     BB BB 67 63 6E 0E EC CC DD DC 99 9F BB B9 33 3E
 
-The gameboys boot procedure verifies the content of this bitmap (after it has displayed it), and LOCKS ITSELF UP if these bytes are incorrect. A CGB verifies only the first 18h bytes of the bitmap, but others (for example a pocket gameboy) verify all 30h bytes.
+The gameboys boot procedure verifies the content of this bitmap (after it has displayed it), and **locks itself up** if these bytes are incorrect. A CGB verifies only the first 18h bytes of the bitmap, but others (for example a pocket gameboy) verify all 30h bytes.
 
 #### 0134-0143 - Title
 
@@ -2289,7 +2298,7 @@ The Japanese cart "Fighting Phoenix" (internal cart name: SUPER B DAMAN) is know
 
 Using MBCs with CGB Double Speed Mode
 The MBC5 has been designed to support CGB Double Speed Mode.
-There have been rumours that older MBCs (like MBC1-3) wouldn't be fast enough in that mode. If so, it might be nethertheless possible to use Double Speed during periods which use only code and data which is located in internal RAM.<br>
+There have been rumours that older MBCs (like MBC1-3) wouldn't be fast enough in that mode. If so, it might be nevertheless possible to use Double Speed during periods which use only code and data which is located in internal RAM.<br>
 However, despite of the above, my own good old selfmade MBC1-EPROM card appears to work stable and fine even in Double Speed Mode though.
 
 ## Gamegenie/Shark Cheats
