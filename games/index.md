@@ -6,9 +6,9 @@ indevgames:
       image: "/games/thumbs/tobutobugirl.png"
       url: "http://tangramgames.dk/games/tobutobugirl"
 
-    - title: "Proximity Core"
-      image: "/games/thumbs/proximitycore.png"
-      url: "http://tangramgames.dk/games/proximitycore"
+    - title: "Rakshasa"
+      image: "/games/thumbs/rakshasa.png"
+      url: "http://tangramgames.dk/games/rakshasa"
 
 pastgames:
     - title: "Mr. Rescue"
