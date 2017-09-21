@@ -1,47 +1,28 @@
-body {
-	font-family: "Lato", sans-serif;
+footer {
+	text-align: right;
 }
 
-.container {
-	width: 800px;
+footer a,
+footer a:hover,
+footer a:active {
+	color: #333;
 }
 
-.sidebar {
-	font-size: 16px;
-	margin-top: 76px;
-	border-right: 1px solid #cccccc;
+.list-inline > li + li:before {
+	content: "|";
+	padding: 0 10px 0 0;
+	color: #ccc;
 }
 
-.sidebar li {
-	margin: 10px 0px 10px 0px;
+.resume-list {
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
-.sidebar-icons {
-	margin-right: -5px;
+.resume-list-left {
+	text-align: right;
 }
 
-.content {
-
-}
-
-h1 {
-	font-size: 24px;
-	color: #5F89AD;
-	margin-bottom: 32px;
-}
-
-.game-grid {
-
-}
-
-.game-cell {
-	display: inline-block;
-	margin: 8px 8px 8px 8px;
-}
-
-.game-thumb {
-	border: 1px solid #337AB7;
-	width: 180px;
-	height: 160px;
-	display:block;
+.resume-list-right {
+	border-left: 1px solid #aaa;
 }
