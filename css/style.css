@@ -19,10 +19,23 @@ footer a:active {
 	margin-bottom: 15px;
 }
 
-.resume-list-left {
-	text-align: right;
+@media (min-width: 768px) {
+	.resume-list-left {
+		text-align: right;
+	}
 }
 
 .resume-list-right {
 	border-left: 1px solid #aaa;
 }
+
+.resume-break-line {
+	display: inline;
+}
+
+@media (min-width: 768px) {
+	.resume-break-line {
+		display: block;
+	}
+}
+

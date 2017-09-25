@@ -68,7 +68,8 @@ Computational biology, network analysis, graph algorithms, machine learning, evo
 
 <div class="row resume-list">
 	<div class="col-sm-2 resume-list-left">
-		Jan 2014<br>- Jun 2014
+		<span class="resume-break-line">Jan 2014</span>
+		<span class="resume-break-line"> - Jun 2014</span>
 	</div>
 	<div class="col-sm-10 resume-list-right">
 		<b>Teaching assistant at University of Southern Denmark</b><br>
@@ -78,8 +79,8 @@ Computational biology, network analysis, graph algorithms, machine learning, evo
 </div>
 <div class="row resume-list">
 	<div class="col-sm-2 resume-list-left">
-		Nov 2013<br>
-		- Mar 2015
+		<span class="resume-break-line">Nov 2013</span>
+		<span class="resume-break-line"> - Mar 2015</span>
 	</div>
 	<div class="col-sm-10 resume-list-right">
   		<b>Software developer at Studievalg Fyn</b><br>
