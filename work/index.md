@@ -6,6 +6,10 @@ title: Work
 
 I have developed several video games as part of Tangram Games. See the [Tangram Games website](http://tangramgames.dk/games) for an overview.
 
+<a href="http://tangramgames.dk/games">
+    <img src="/img/game-bubbles.png" class="img-responsive center-block" alt="Overview of my games.">
+</a>
+
 ## Music
 
 I was a guitarist in the Danish death metal act Castrensis from 2010 to 2017.
