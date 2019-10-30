@@ -2,3 +2,4 @@ github_user: SimonLarsen
 markdown: kramdown
 sass:
   style: compressed
+highlighter: rouge

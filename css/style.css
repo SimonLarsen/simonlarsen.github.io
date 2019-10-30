@@ -16,3 +16,14 @@
 .publication-list li {
     line-height: 1.3;
 }
+
+pre.highlight {
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    border-radius: .25em;
+}
+
+.blog-timestamp {
+    font-size: 20px;
+    color: #606060;
+}
