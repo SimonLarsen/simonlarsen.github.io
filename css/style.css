@@ -9,12 +9,20 @@
     font-size: 16px;
 }
 
-.publication-list li:not(:last-child) {
-    margin-bottom: 10px;
+.paper-title {
+    line-height: 1.1;
+    margin-bottom: 4pt;
+    font-size: 1.1rem;
 }
 
-.publication-list li {
-    line-height: 1.3;
+.paper-authors {
+    line-height: 1.1;
+    margin-bottom: 2pt;
+}
+
+.paper-journal {
+    line-height: 1.1;
+    margin-bottom: 12pt;
 }
 
 pre.highlight {
