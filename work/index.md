@@ -2,6 +2,23 @@
 layout: page
 title: Other work
 ---
+## Software
+
+### bandcampr
+
+bandcampr is an R package for scraping data from bandcamp.com.
+
+* Project page: [https://SimonLarsen.github.com/bandcampr](https://SimonLarsen.github.com/bandcampr)
+* Source code: [https://github.com/SimonLarsen/bandcampr](https://github.com/SimonLarsen/bandcampr)
+
+### CoNVaQ
+
+CoNVaQ is an R package and online dashboard for performing association studies on segmented copy number variation (CNV) data.
+
+* Web interface: [http://convaq.compbio.sdu.dk](http://convaq.compbio.sdu.dk)
+* Source code: [https://github.com/SimonLarsen/convaq](https://github.com/SimonLarsen/convaq)
+* Publication: [https://doi.org/10.1186/s12864-018-4732-8](https://doi.org/10.1186/s12864-018-4732-8)
+
 ## Music
 
 I was a guitarist in the Danish death metal act Castrensis from 2010 to 2017.
