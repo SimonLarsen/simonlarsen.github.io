@@ -17,20 +17,22 @@ software:
 ---
 ## Software
 
-<div class="row">
-    {% for elem in page.software %}
-    <div class="col-sm-6 col-md-4 d-flex">
-        <div class="card w-100 mb-3">
-            <img class="card-img-top" src="{{ elem.image }}">
+{% for elem in page.software %}
+<div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col-sm-3">
+            <img class="card-img" src="{{ elem.image }}">
+        </div>
+        <div class="col-sm-9">
             <div class="card-body">
                 <h5 class="card-title">{{ elem.name }}</h5>
-                <p>{{ elem.text }}</p>
-                <a href="{{ elem.url }}" class="stretched-link"></a>
+                <p class="card-text">{{ elem.text }}</p>
             </div>
         </div>
     </div>
-    {% endfor %}
+    <a href="{{ elem.url }}" class="stretched-link"></a>
 </div>
+{% endfor %}
 
 ## Music
 
